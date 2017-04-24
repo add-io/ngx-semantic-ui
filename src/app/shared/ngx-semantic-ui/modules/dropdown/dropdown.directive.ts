@@ -1,10 +1,19 @@
-import { Input, Component, Directive, Optional, ElementRef, HostListener, Renderer } from "@angular/core";
+import { Directive, ContentChildren, QueryList, AfterViewInit, ViewContainerRef, ComponentFactoryResolver } from "@angular/core";
+import { OptionDirective } from "./helper-directives";
 
-@Directive({ selector: ".ui.dropdown" })
-export class DropDownDirective {
+import { DropdownComponent } from "./dropdown.component";
 
-  @Input("dropdown") dropdown: string;
+@Directive({ selector: "select.ui.dropdown" })
+export class DropDownDirective implements AfterViewInit {
 
-  constructor(private _renderer: Renderer, private _element: ElementRef) {
-  }
+    @ContentChildren(OptionDirective) options: QueryList<OptionDirective>;
+
+    constructor(private _container: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
+    }
+
+    ngAfterViewInit() {
+        let factory = this._componentFactoryResolver.resolveComponentFactory(DropdownComponent);
+        let ref = this._container.createComponent(factory);
+        ref.instance.directive = this;
+    }
 }

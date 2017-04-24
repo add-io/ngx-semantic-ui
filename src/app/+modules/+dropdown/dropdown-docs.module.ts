@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import { DropDownDocsRouting } from './dropdown-docs.routing';
 import { DropDownDocsComponent} from './dropdown-docs.component';
 
-import { DropDownDirective, DropDownTriggerDirective } from "../../shared/ngx-semantic-ui"
+import { DropDownDirective, OptionDirective, DropdownComponent, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective } from "../../shared/ngx-semantic-ui"
 
 @NgModule({
     imports: [
@@ -14,9 +14,15 @@ import { DropDownDirective, DropDownTriggerDirective } from "../../shared/ngx-se
     declarations: [
         DropDownDocsComponent,
         DropDownDirective,
-        DropDownTriggerDirective
+        OptionDirective,
+        DropdownComponent,
+        DropdownItemDirective,
+        DropdownSelectionDirective,
+        DropdownTextDirective,
+        DropdownMenuDirective
     ],
-    providers: []
+    providers: [],
+    entryComponents: [DropdownComponent]
 })
 export class DropDownDocsModule {
 }
