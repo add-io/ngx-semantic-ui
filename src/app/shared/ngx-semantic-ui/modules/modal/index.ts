@@ -4,3 +4,5 @@ export { ModalApproveDirective } from "./modal-approve.directive";
 export { ModalCloseDirective } from "./modal-close.directive";
 export { ModalDenyDirective } from "./modal-deny.directive";
 export { ModalService } from "./modal.service";
+export { ModalModule } from "./modal.module";
+export { ModalConfig } from "./modal.config";

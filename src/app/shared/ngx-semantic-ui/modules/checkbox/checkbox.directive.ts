@@ -7,7 +7,7 @@ export const CHECKBOX_VALUE_ACCESSOR: any = {
     multi: true
 }
 
-@Directive({ selector: '.ui.checkbox', providers: [CHECKBOX_VALUE_ACCESSOR] })
+@Directive({ selector: '.ui.checkbox', providers: [ CHECKBOX_VALUE_ACCESSOR ] })
 export class CheckboxDirective implements ControlValueAccessor, OnInit {
 
     /**
@@ -18,7 +18,7 @@ export class CheckboxDirective implements ControlValueAccessor, OnInit {
     private _onTouched: any = Function.prototype;
 
     @HostBinding('class.checked')
-    @Input() 
+    @Input()
     public checked: boolean = false;;
 
     @Input()
@@ -45,7 +45,7 @@ export class CheckboxDirective implements ControlValueAccessor, OnInit {
      * This function is needed for OnInit
      */
 
-    
+
     public ngOnInit(): void {
     }
 

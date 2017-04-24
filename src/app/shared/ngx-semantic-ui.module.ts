@@ -12,10 +12,11 @@ import {LayoutService} from './layout/layout.service'
 
 import {LayoutModule} from './layout'
 
-import {NgxsuiCheckboxModule} from './ngx-semantic-ui/modules/checkbox/ngxsui-checkbox.module';
 import {NgxsuiSidebarModule} from "./ngx-semantic-ui/modules/sidebar/ngxsui-sidebar.module";
-import {NgxsuiTabsModule} from "./ngx-semantic-ui/modules/tab/ngxsui-tabs.module";
 import {NgxsuiPopupModule} from './ngx-semantic-ui/modules/popup/ngxsui-popup.module';
+
+import { TabModule } from "./ngx-semantic-ui/modules/tab/tab.module";
+import { CheckboxModule } from "./ngx-semantic-ui/modules/checkbox/checkbox.module";
 
 @NgModule({
     imports: [
@@ -31,9 +32,9 @@ import {NgxsuiPopupModule} from './ngx-semantic-ui/modules/popup/ngxsui-popup.mo
         HttpModule,
         RouterModule,
         LayoutModule,
-        NgxsuiCheckboxModule,
+        TabModule,
         NgxsuiSidebarModule,
-        NgxsuiTabsModule,
+        CheckboxModule,
         NgxsuiPopupModule
     ],
     providers: [LayoutService]

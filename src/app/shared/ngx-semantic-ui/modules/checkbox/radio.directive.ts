@@ -7,7 +7,7 @@ export const RADIO_VALUE_ACCESSOR: any = {
     multi: true
 }
 
-@Directive({ selector: '.ui.radio.checkbox', providers: [RADIO_VALUE_ACCESSOR] })
+@Directive({ selector: '.ui.radio.checkbox', providers: [ RADIO_VALUE_ACCESSOR ] })
 export class RadioCheckboxDirective implements ControlValueAccessor, OnInit {
 
     /**
@@ -28,7 +28,7 @@ export class RadioCheckboxDirective implements ControlValueAccessor, OnInit {
     public disabled: boolean = false;
 
     @HostBinding('class.read-only')
-    @Input() 
+    @Input()
     public readonly: boolean = false;
 
     @Output()
@@ -53,7 +53,7 @@ export class RadioCheckboxDirective implements ControlValueAccessor, OnInit {
      */
 
     public ngOnInit(): void {
-        
+
     }
 
     /**
@@ -71,5 +71,5 @@ export class RadioCheckboxDirective implements ControlValueAccessor, OnInit {
     public registerOnTouched(func: any): void {
         this._onTouched = func;
     }
-    
+
 }

@@ -1,0 +1,14 @@
+{
+  "name": "ngx-semantic-ui",
+  "version": "0.1.0",
+  "license": "MIT",
+  "typings": "./index.d.ts",
+  "main": "index.js",
+  "peerDependencies": {
+    "@angular/animations": "*",
+    "@angular/common": "*",
+    "@angular/compiler": "*",
+    "@angular/core": "*",
+    "@angular/forms": "*"
+  }
+}
