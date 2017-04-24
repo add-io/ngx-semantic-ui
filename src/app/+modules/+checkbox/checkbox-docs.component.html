@@ -1,0 +1,293 @@
+<h1 class="ui header">
+    Checkbox
+</h1>
+<div class="ui ignored info message">
+    A checkbox allows a user to select a value from a small set of options, often binary
+</div>
+
+<div class="ui segment">
+    
+    <div class="ui pointing secondary menu">
+        <a class="item active" data-tab="tab-examples">Examples</a>
+        <a class="item" data-tab="tab-usage">Usage</a>
+        <a class="item" data-tab="tab-settings">Settings</a>
+    </div>
+
+    <div class="ui tab active" data-tab="tab-examples">
+
+        <h1>Types</h1>
+        <div class="ui divider"></div>
+
+        <div class="example">
+            <h2>Checkbox</h2>
+            <p>A standard checkbox.</p>
+            <div class="ui checkbox">
+                <input id="1" type="checkbox">
+                <label for="1">Make my profile visible</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Radio</h2>
+            <p>A checkbox can be formatted as a radio element. This means it is an exclusive option.</p>
+            <div class="ui radio checkbox">
+                <input id="2" type="radio" name="Fred" checked="checked">
+                <label for="2">Radio choice</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="ui form">
+                <div class="inline fields">
+                    <label>How often do you use checkboxes?</label>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="3" type="radio" name="frequency" checked="checked">
+                            <label for="3">Once a week</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="4" type="radio" name="frequency">
+                            <label for="4">2-3 times a week</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="5" type="radio" name="frequency">
+                            <label for="5">Once a day</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="6" type="radio" name="frequency">
+                            <label for="6">Twice a day</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="ui form">
+                <div class="grouped fields">
+                    <label>How often do you use checkboxes?</label>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="7" type="radio" name="example2" checked="checked">
+                            <label for="7">Once a week</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="8" type="radio" name="example2">
+                            <label for="8">2-3 times a week</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="9" type="radio" name="example2">
+                            <label for="9">Once a day</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input id="10" type="radio" name="example2">
+                            <label for="10">Twice a day</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Slider</h2>
+            <div class="ui slider checkbox">
+                <input id="11" type="checkbox" name="newsletter">
+                <label for="11">Accept terms and conditions</label>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h2>Toggle</h2>
+            <div class="ui toggle checkbox">
+                <input id="12" type="checkbox" name="public">
+                <label for="12">Subscribe to weekly newsletter</label>
+            </div>
+        </div>
+
+        <h1>States</h1>
+        <div class="ui divider"></div>
+
+        <div class="example">
+            <h2>Read-only</h2>
+            <p>A checkbox can be read-only and unable to change states</p>
+            <div class="ui read-only checkbox">
+                <input type="checkbox">
+                <label>Read Only</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Checked</h2>
+            <p>A checkbox can be checked</p>
+            <div class="ui checkbox checked">
+                <input id="14" type="checkbox">
+                <label for="14">Active</label>
+            </div>
+        </div>
+        
+        <div class="example">
+            <h2>Indeterminate</h2>
+            <p>A checkbox can be indeterminate</p>
+            <div class="ui checkbox">
+                <input id="15" type="checkbox">
+                <label for="15">Indeterminate</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Disabled</h2>
+            <p>A checkbox can be read-only and unable to change states</p>
+            <div class="ui disabled checkbox">
+                <input id="16" type="checkbox" disabled="disabled">
+                <label for="16">Disabled</label>
+            </div>
+            <br />
+            <br />
+            <div class="ui toggle checkbox">
+                <input id="17" type="checkbox" disabled="disabled">
+                <label for="17">Disabled</label>
+            </div>
+        </div>
+        
+        <h1>Variations</h1>
+        <div class="ui divider"></div>
+
+        <div class="last-example">
+            <h2>Fitted</h2>
+            <p>A fitted checkbox does not leave padding for a label</p>
+
+            <div class="ui left floated compact segment">
+                <div class="ui fitted checkbox">
+                    <input type="checkbox">
+                    <label></label>
+                </div>
+            </div>
+
+            <div class="ui left floated compact segment">
+                <div class="ui fitted slider checkbox">
+                    <input type="checkbox">
+                    <label></label>
+                </div>
+            </div>
+
+            <div class="ui left floated compact segment">
+                <div class="ui fitted toggle checkbox">
+                    <input type="checkbox">
+                    <label></label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ui tab" data-tab="tab-usage">
+        <h1>Initializing</h1>
+        <div class="ui divider"></div>
+
+        <div class="example">
+            <h2>Checkbox</h2>
+            <p>A checkbox does not require Javascript to function.</p>
+            <div class="ui checkbox">
+                <input type="checkbox">
+                <label>Label</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Full Featured Checkboxes</h2>
+            <p>Using Javascript with checkboxes will automatically make 
+                the checkbox's label trigger a change in the input and
+                provide callback functions. Additionally, some states 
+                like <b>indeterminate</b> can only be triggered with Javascript.</p>
+            <div class="ui checkbox">
+                <input type="checkbox" tabindex="0" class="hidden">
+                <label>Label</label>
+            </div>
+        </div>
+
+        <div class="example">
+            <h2>Linked Labels</h2>
+            <p>If you just need labels to link without any other features 
+                of Javascript checkboxes, you can match the for attribute 
+                of the label to an input's id.</p>
+            <div class="ui checkbox">
+                <input id="example-id" type="checkbox">
+                <label for="example-id">Label</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui tab" data-tab="tab-settings">
+        <div class="example">
+            <h2>Checkbox</h2>
+            <p>These settings are specific to checkbox, and determine the parameters of its behavior</p>
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                    <tr>
+                        <th class="four wide"></th>
+                        <th class="four wide">Context</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>onChange</td>
+                        <td>HTML input element</td>
+                        <td>Callback after a checkbox is either checked or unchecked.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="example">
+            <h2>Module</h2>
+            <p>These settings are native to all modules, and define how the component ties content to DOM attributes, and debugging settings for the module.</p>
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                    <tr>
+                        <th class="four wide"></th>
+                        <th class="four wide">Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>name</td>
+                        <td>Checkbox</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>selector</td>
+                        <td class="string">input[type=checkbox],input[type=radio]</td>
+                        <td>Selectors used to find parts of a module.</td>
+                    </tr>
+                    <tr>
+                        <td>className</td>
+                        <td>
+                            <span>checked : </span><span class="string">'checked'</span><br />
+                            <span>disabled : </span><span class="string">'disabled'</span><br />
+                            <span>radio : </span><span class="string">'radio'</span><br />
+                            <span>readOnly : </span><span class="string">'read-only'</span>
+                        </td>
+                        <td>Class names used to determine element state.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

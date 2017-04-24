@@ -1,0 +1,648 @@
+
+
+            <h1 class="ui header">
+                Sidebar
+
+                <div class="sub header">
+                    A sidebar hides additional content beside a page.
+                </div>
+            </h1>
+
+            <div class="ui hidden divider"></div>
+
+
+
+
+
+    <div class="ui segment">
+
+        <div class="ui pointing secondary menu">
+            <a class="item active" data-tab="examples">Examples</a>
+            <a class="item" data-tab="settings">Settings</a>
+        </div>
+
+        <div class="ui tab active" data-tab="examples">
+            <div class="ui dividing right rail">
+                <div class="ui sticky" style="width: 283px !important; height: 248px !important;"><h4
+                        class="ui header">Sidebar</h4>
+                    <div class="ui vertical following fluid accordion text menu">
+                        <div class="item"><a class="active title"><i class="dropdown icon"></i> <b>Examples</b></a>
+                            <div class="active content menu"><a class="item" href="#transitions">Transitions</a><a
+                                    class="item" href="#displaying-multiple">Displaying Multiple</a><a class="item"
+                                                                                                       href="#using-a-custom-context">Using
+                                a custom context</a><a class="item" href="#triggering-showhide-with-other-content">Triggering
+                                show/hide with other content</a><a class="item"
+                                                                   href="#triggering-custom-behavior-with-other-content">Triggering
+                                custom behavior with other content</a><a class="item" href="#starting-visible">Starting
+                                Visible</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="ui header">Examples<a class="anchor" id="examples"></a></h2>
+
+            <div class="no direction example">
+                <h4 class="ui header">Transitions</h4><i class="icon code"></i><a class="anchor"
+                                                                                  id="transitions"></a>
+                <p>Not all sidebar transitions are available for every sidebar direction, or when multiple sidebars
+                    are visible at a time.</p>
+                <table class="ui celled definition table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Multiple Visible <i class="help circle link icon"
+                                                data-content="Whether multiple sidebars of this type can be visible at same time"></i>
+                        </th>
+                        <th>Supports Vertical Sidebars</th>
+                        <th>Supports Horizontal Sidebars</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Overlay</td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Push</td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Scale Down</td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="red cancel icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Uncover</td>
+                        <td><i class="red cancel icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="red cancel icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Slide Along</td>
+                        <td><i class="red cancel icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="red cancel icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Slide Out</td>
+                        <td><i class="red cancel icon"></i></td>
+                        <td><i class="green check icon"></i></td>
+                        <td><i class="red cancel icon"></i></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="ui toggle dim checkbox">
+                    <input type="checkbox" name="dim" tabindex="0" class="hidden">
+                    <label>Dim Page</label>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+                <h5 class="ui header">Direction</h5>
+                <div class="ui buttons">
+                    <div class="ui button" data-direction="left">
+                        Left
+                    </div>
+                    <div class="ui active button" data-direction="right">
+                        Right
+                    </div>
+                    <div class="ui button" data-direction="top">
+                        Top
+                    </div>
+                    <div class="ui button" data-direction="bottom">
+                        Bottom
+                    </div>
+                </div>
+
+                <div class="ui hidden divider"></div>
+
+                <h5 class="ui header">All Direction Animations</h5>
+                <div class="ui button" data-transition="overlay">
+                    Overlay
+                </div>
+                <div class="ui button" data-transition="push">
+                    Push
+                </div>
+                <div class="ui button" data-transition="scale down">
+                    Scale Down
+                </div>
+
+                <h5 class="ui header">Vertical-Only Animations</h5>
+                <div class="ui horizontal button" data-transition="uncover">
+                    Uncover
+                </div>
+                <div class="ui horizontal button" data-transition="slide along">
+                    Slide Along
+                </div>
+                <div class="ui horizontal button" data-transition="slide out">
+                    Slide Out
+                </div>
+
+            </div>
+
+            <div class="no example">
+                <h4 class="ui header">Displaying Multiple</h4><i class="icon code"></i><a class="anchor"
+                                                                                          id="displaying-multiple"></a>
+                <p>Multiple sidebars can be displayed at the same time only when using a supported animation like
+                    <code>push</code> or <code>overlay</code>.</p>
+                <div class="ui warning message">You may need to manually set the z-index on elements to ensure the
+                    intended sidebar element appears on top.
+                </div>
+
+                <div class="ui info message">
+                    If you are triggering multiple sidebars at the same time, its recommended to set the transition
+                    to overlay.
+                </div>
+
+                <a class="ui black pointing below ignored label">Run Code</a>
+                <div class="ui existing segment"><pre><code class="code javascript">
+                        <!--<span class="comment">// showing multiple</span>-->
+                    <!--$(<span class="string">'.demo.sidebar'</span>)-->
+                    <!--.sidebar(<span class="string">'setting'</span>, <span class="string">'transition'</span>, <span-->
+                    <!--class="string">'overlay'</span>)-->
+                    <!--.sidebar(<span class="string">'toggle'</span>)-->
+                    <!--;-->
+                    </code></pre>
+                </div>
+            </div>
+            <div class="context example">
+                <h4 class="ui header">Using a custom context</h4><i class="icon code"></i><a class="anchor"
+                                                                                             id="using-a-custom-context"></a>
+                <p>A sidebar can be initialized inside any element, not just a page's <code>body</code>.</p>
+                <div class="ui ignored info message">
+                    A sidebar's <code>context</code> cannot have any padding. You can solve this by padding its
+                    inner content, or using an additional containing element
+                </div>
+                <div class="ui top attached demo menu">
+                    <a class="item">
+                        <i class="sidebar icon"></i>
+                        Menu
+                    </a>
+                </div>
+                <div class="ui bottom attached segment pushable">
+                    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+                        <a class="item">
+                            <i class="home icon"></i>
+                            Home
+                        </a>
+                        <a class="item">
+                            <i class="block layout icon"></i>
+                            Topics
+                        </a>
+                        <a class="item">
+                            <i class="smile icon"></i>
+                            Friends
+                        </a>
+                        <a class="item">
+                            <i class="calendar icon"></i>
+                            History
+                        </a>
+                    </div>
+                    <div class="pusher">
+                        <div class="ui basic segment">
+                            <h3 class="ui header">Application Content</h3>
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                        </div>
+                    </div>
+                </div>
+                <div class="ui existing segment">
+                        <pre>
+                            <code class="evaluated code javascript">
+                                <!--<span class="comment">// using context</span>-->
+                                <!---->
+                                <!--$(<span class="string">'.context.example .ui.sidebar'</span>)-->
+                                <!--.sidebar({-->
+                                <!--context: $(<span class="string">'.context.example .bottom.segment'</span>)-->
+                                <!--})-->
+                                <!--.sidebar(<span class="string">'attach events'</span>, <span class="string">'.context.example .menu .item'</span>)-->
+                                <!--;-->
+                            </code>
+                        </pre>
+                </div>
+            </div>
+
+            <div class="no example">
+                <h4 class="ui header">Triggering show/hide with other content</h4><i class="icon code"></i><a
+                    class="anchor" id="triggering-showhide-with-other-content"></a>
+                <p>For convenience calling attach events will allow you to bind events. By default this will toggle
+                    the sidebar in and out of view on click</p>
+                <a class="ui black pointing below ignored label">Run Code</a>
+                <div class="ui existing segment"><pre>
+                        <code class="code javascript">
+                            <!--$(<span class="string">'.left.demo.sidebar'</span>).first()-->
+                            <!--.sidebar(<span class="string">'attach events'</span>, <span class="string">'.toggle.button'</span>)-->
+                            <!--;-->
+                            <!--$(<span class="string">'.toggle.button'</span>)-->
+                            <!--.removeClass(<span class="string">'disabled'</span>)-->
+                            <!--;-->
+                        </code></pre>
+                </div>
+                <div class="ui disabled secondary labeled icon toggle button">
+                    <i class="left arrow icon"></i>
+                    Trigger Sidebar
+                </div>
+            </div>
+
+            <div class="no example">
+                <h4 class="ui header">Triggering custom behavior with other content</h4><i class="icon code"></i><a
+                    class="anchor" id="triggering-custom-behavior-with-other-content"></a>
+                <p>You can also specify what behavior should occur when the element is clicked</p>
+                <a class="ui black pointing below ignored label">Run Code</a>
+                <div class="ui existing segment"><pre><code class="code javascript">
+                        <!--$(<span class="string">'.left.demo.sidebar'</span>).first()-->
+                    <!--.sidebar(<span class="string">'attach events'</span>, <span class="string">'.open.button'</span>, <span-->
+                    <!--class="string">'show'</span>)-->
+                    <!--;-->
+                    <!--$(<span class="string">'.open.button'</span>)-->
+                    <!--.removeClass(<span class="string">'disabled'</span>)-->
+                    <!--;-->
+                    </code></pre>
+                </div>
+                <div class="ui disabled secondary labeled icon open button">
+                    <i class="left arrow icon"></i>
+                    Open Sidebar
+                </div>
+            </div>
+
+            <div class="visible example">
+                <h4 class="ui header">Starting Visible</h4><i class="icon code"></i><a class="anchor"
+                                                                                       id="starting-visible"></a>
+                <p>A sidebar can start visible by adding the class name <code>visible</code></p>
+                <div class="ui ignored warning message">
+                    You must include the class <code>pushable</code> on a sidebars containing element for it to
+                    appear correctly before Javascript initializes the element
+                </div>
+                <div class="ui ignored info message">
+                    Although sidebars support any size content, sidebars that are visible on load only support
+                    standard, predefined sizes like <code>thin</code> or <code>wide</code>. This makes sure content
+                    can be positioned correctly before Javascript is available.
+                </div>
+                <div class="ui bottom attached segment pushable">
+                    <div class="ui visible inverted left vertical sidebar menu">
+                        <a class="item">
+                            <i class="home icon"></i>
+                            Home
+                        </a>
+                        <a class="item">
+                            <i class="block layout icon"></i>
+                            Topics
+                        </a>
+                        <a class="item">
+                            <i class="smile icon"></i>
+                            Friends
+                        </a>
+                        <a class="item">
+                            <i class="calendar icon"></i>
+                            History
+                        </a>
+                    </div>
+                    <div class="pusher">
+                        <div class="ui basic segment">
+                            <h3 class="ui header">Application Content</h3>
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                            <!--<img class="ui wireframe image" src="/images/wireframe/short-paragraph.png">-->
+                        </div>
+                    </div>
+                </div>
+                <a class="ui black pointing below ignored label">Run Code</a>
+                <div class="ui existing segment"><pre><code class="code javascript">
+                        <span class="comment">// showing multiple</span>
+                    <!--$(<span class="string">'.visible.example .ui.sidebar'</span>)-->
+                    <!--.sidebar({-->
+                    <!--context: <span class="string">'.visible.example .bottom.segment'</span>-->
+                    <!--})-->
+                    <!--.sidebar(<span class="string">'hide'</span>)-->
+                    <!--;-->
+                    </code></pre>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui tab" data-tab="settings">
+            <div class="ui dividing right rail" style="height: 3161px;">
+                <div class="ui sticky" style=""><h4 class="ui header">Sidebar</h4>
+                    <div class="ui vertical following fluid accordion text menu">
+                        <div class="item"><a class="active title" href="#sidebar"><b>
+                            Sidebar
+                        </b></a></div>
+                        <div class="item"><a class="title" href="#module"><b>
+                            Module
+                        </b></a></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="ui dividing header">
+                Sidebar
+                <a class="anchor" id="sidebar"></a></h2>
+
+            <h4 class="ui header">
+                Behavior
+            </h4>
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th class="four wide">Default</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>context</td>
+                    <td>body</td>
+                    <td>Context which sidebar will appear inside</td>
+                </tr>
+                <tr>
+                    <td>exclusive</td>
+                    <td>false</td>
+                    <td>Whether multiple sidebars can be open at once</td>
+                </tr>
+                <tr>
+                    <td>closable</td>
+                    <td>true</td>
+                    <td>Whether sidebar can be closed by clicking on page</td>
+                </tr>
+                <tr>
+                    <td>dimPage</td>
+                    <td>true</td>
+                    <td>Whether to dim page contents when sidebar is visible</td>
+                </tr>
+                <tr>
+                    <td>scrollLock</td>
+                    <td>false</td>
+                    <td>Whether to lock page scroll when sidebar is visible</td>
+                </tr>
+                <tr>
+                    <td>returnScroll</td>
+                    <td>false</td>
+                    <td>Whether to return to original scroll position when sidebar is hidden, automatically occurs
+                        with <code>transition: scale</code></td>
+                </tr>
+                <tr>
+                    <td>delaySetup</td>
+                    <td>false</td>
+                    <td>When sidebar is initialized without the proper HTML, using this option will defer creation
+                        of DOM to use <code>requestAnimationFrame</code>.
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="ui horizontal section divider"><i class="icon setting"></i></div>
+
+            <h4 class="ui header">
+                Animation
+            </h4>
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th class="six wide">Default</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>transition</td>
+                    <td>auto</td>
+                    <td>Named transition to use when animating sidebar. Defaults to 'auto' which selects transition
+                        from <code>defaultTransition</code> based on direction.
+                    </td>
+                </tr>
+                <tr>
+                    <td>mobileTransition</td>
+                    <td>auto</td>
+                    <td>Named transition to use when animating when detecting mobile device. Defaults to 'auto'
+                        which selects transition from <code>defaultTransition</code> based on direction.
+                    </td>
+                </tr>
+                <tr>
+                    <td>defaultTransition</td>
+                    <td>
+                        <div class="code" data-type="javascript">
+                            <!--{-->
+                            <!--computer: {-->
+                            <!--left : 'uncover',-->
+                            <!--right : 'uncover',-->
+                            <!--top : 'overlay',-->
+                            <!--bottom : 'overlay'-->
+                            <!--},-->
+                            <!--mobile: {-->
+                            <!--left : 'uncover',-->
+                            <!--right : 'uncover',-->
+                            <!--top : 'overlay',-->
+                            <!--bottom : 'overlay'-->
+                            <!--}-->
+                            <!--}-->
+                        </div>
+                    </td>
+                    <td>Default transitions for each direction and screen size, used with <code>transition:
+                        auto</code></td>
+                </tr>
+                <tr>
+                    <td>useLegacy</td>
+                    <td>false</td>
+                    <td>Whether Javascript animations should be used. Defaults to <code>false</code>. Setting to
+                        <code>auto</code> will use legacy animations only for browsers that do not support CSS
+                        transforms
+                    </td>
+                </tr>
+                <tr>
+                    <td>duration</td>
+                    <td>500</td>
+                    <td>Duration of sidebar animation when using legacy Javascript animation</td>
+                </tr>
+                <tr>
+                    <td>easing</td>
+                    <td>easeInOutQuint</td>
+                    <td>Easing to use when using legacy Javascript animation</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="ui horizontal section divider"><i class="icon setting"></i></div>
+
+            <h4 class="ui header">Callbacks</h4>
+
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                <tr>
+                    <th class="four wide">Setting</th>
+                    <th>Context</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>onVisible</td>
+                    <td>Sidebar</td>
+                    <td>Is called when a sidebar begins animating in.</td>
+                </tr>
+                <tr>
+                    <td>onShow</td>
+                    <td>Sidebar</td>
+                    <td>Is called when a sidebar has finished animating in.</td>
+                </tr>
+                <tr>
+                    <td>onChange</td>
+                    <td>Sidebar</td>
+                    <td>Is called when a sidebar begins to hide or show</td>
+                </tr>
+                <tr>
+                    <td>onHide</td>
+                    <td>Sidebar</td>
+                    <td>Is called before a sidebar begins to animate out.</td>
+                </tr>
+                <tr>
+                    <td>onHidden</td>
+                    <td>Sidebar</td>
+                    <td>Is called after a sidebar has finished animating out.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2 class="ui dividing header">
+                Module
+                <a class="anchor" id="module"></a></h2>
+
+            <h4 class="ui header">
+                DOM Settings
+            </h4>
+            <table class="ui celled definition table segment">
+                <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th class="six wide">Default</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>namespace</td>
+                    <td>sidebar</td>
+                </tr>
+                <tr>
+                    <td>className</td>
+                    <td>
+                        <div class="code" data-type="javascript">
+                            <!--className : {-->
+                            <!--active : 'active',-->
+                            <!--animating : 'animating',-->
+                            <!--dimmed : 'dimmed',-->
+                            <!--ios : 'ios',-->
+                            <!--pushable : 'pushable',-->
+                            <!--pushed : 'pushed',-->
+                            <!--right : 'right',-->
+                            <!--top : 'top',-->
+                            <!--left : 'left',-->
+                            <!--bottom : 'bottom',-->
+                            <!--visible : 'visible'-->
+                            <!--}-->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>regExp</td>
+                    <td>
+                        <div class="code" data-type="javascript">
+                            <!--regExp: {-->
+                            <!--ios : /(iPad|iPhone|iPod)/g,-->
+                            <!--mobile :-->
+                            <!--/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera-->
+                            <!--M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune/g-->
+                            <!--}-->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>selector</td>
+                    <td>
+                        <div class="code" data-type="javascript">
+                            <!--selector: {-->
+                            <!--fixed : '.fixed',-->
+                            <!--omitted : 'script, link, style, .ui.modal, .ui.dimmer, .ui.nag, .ui.fixed',-->
+                            <!--pusher : '.pusher',-->
+                            <!--sidebar : '.ui.sidebar'-->
+                            <!--}-->
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="ui horizontal section divider"><i class="icon setting"></i></div>
+
+            <h4 class="ui header">
+                Debug
+            </h4>
+
+            <table class="ui celled sortable definition table segment">
+                <thead>
+                <tr>
+                    <th>Setting</th>
+                    <th class="four wide">Default</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>name</td>
+                    <td>Sidebar</td>
+                    <td>Name used in debug logs</td>
+                </tr>
+                <tr>
+                    <td>silent</td>
+                    <td>False</td>
+                    <td>Silences all console output including error messages, regardless of other debug settings.
+                    </td>
+                </tr>
+                <tr>
+                    <td>debug</td>
+                    <td>False</td>
+                    <td>Provides standard debug output to console</td>
+                </tr>
+                <tr>
+                    <td>performance</td>
+                    <td>True</td>
+                    <td>Provides standard debug output to console</td>
+                </tr>
+                <tr>
+                    <td>verbose</td>
+                    <td>True</td>
+                    <td>Provides ancillary debug output to console</td>
+                </tr>
+                <tr>
+                    <td>errors</td>
+                    <td colspan="2">
+                        <div class="code">
+                            <!--error   : {-->
+                            <!--method       : 'The method you called is not defined.',-->
+                            <!--pusher       : 'Had to add pusher element. For optimal performance make sure body content is inside a pusher element',-->
+                            <!--movedSidebar : 'Had to move sidebar. For optimal performance make sure sidebar and pusher are direct children of your body tag',-->
+                            <!--overlay      : 'The overlay setting is no longer supported, use animation: overlay',-->
+                            <!--notFound     : 'There were no elements that matched the specified selector'-->
+                            <!--}-->
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+

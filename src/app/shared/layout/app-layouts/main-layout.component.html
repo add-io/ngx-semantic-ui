@@ -1,0 +1,37 @@
+<!--<top-sidebar-demo></top-sidebar-demo>-->
+
+<layout-header></layout-header>
+
+<div class="ui bottom attached segment pushable">
+    <div leftNav class="ui vertical fixed inverted sidebar menu left" [ngClass]="{'visible': !menuCollapsed, 'hidden': menuCollapsed}">
+        <a class="item" routerLinkActive="active" routerLink="/introduction">
+            Introduction
+        </a>
+        <div class="item">
+            <div class="header">Modules</div>
+            <div class="menu">
+                <a class="item" routerLinkActive="active" routerLink="/modules/accordion">Accordion</a>
+                <a class="item" routerLinkActive="active" routerLink="/modules/checkbox">Checkbox</a>
+                <a class="item" routerLinkActive="active" routerLink="/modules/tab">Tab</a>
+                <!--<a class="item" routerLinkActive="active" routerLink="/modules/dropdown">DropDown</a>-->
+                <a class="item" routerLinkActive="active" routerLink="/modules/modal">Modal</a>
+                <!--<a class="item" routerLinkActive="active" routerLink="/modules/popup">Popup</a>-->
+                <!--<a class="item" routerLinkActive="active" routerLink="/modules/sidebar">Sidebar</a>-->
+            </div>
+        </div>
+    </div>
+    <div class="pusher">
+        <div class="ui basic segment">
+            <div class="article" >
+                <div class="main ui container">
+
+                <router-outlet ></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<layout-footer></layout-footer>

@@ -1,0 +1,361 @@
+<h1 class="ui header">Modal</h1>
+<div class="ui ignored info message">
+    A modal displays content that temporarily blocks interactions with the main view of a site.
+</div>
+
+<div class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="item active" data-tab="modal-examples">Examples</a>
+        <a class="item" data-tab="modal-settings">Settings</a>
+    </div>
+    <div class="ui tab active" data-tab="modal-examples">
+        <h4>Basic Modal</h4>
+        <p>This is a basic example of how a modal can be done</p>
+        <a class="ui button blue" (click)="basicModal.open()">Open Basic Modal</a>
+        <div class="ui basic modal" #basicModal>
+            <div class="ui icon header">
+                <i class="archive icon"></i>
+                Archive Old Messages
+            </div>
+            <div class="content">
+                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+            </div>
+            <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <div class="ui green ok inverted button">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+
+        <h4>Form Modal</h4>
+        <p>This ia a modal that also includes a form element that can be altered.</p>
+        <a class="ui button blue" (click)="formModal.open()">Open Form Modal</a>
+        <p>First Name: {{firstName ? firstName : "Please add in data."}} | Last Name: {{lastName ? lastName : "Please add in data."}}</p>
+        <div class="ui modal" #formModal>
+            <i class="close icon"></i>
+            <div class="header">Profile Picture</div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <i class="icon checkmark"></i>
+                </div>
+                <div class="description">
+                    <div class="ui form">
+                        <div class="field">
+                            <label>First Name</label>
+                            <input type="text" name="first-name" [(ngModel)]="firstName" placeholder="First Name" />
+                        </div>
+                        <div class="field">
+                            <label>Last Name</label>
+                            <input type="text" name="last-name" [(ngModel)]="lastName" placeholder="Last Name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">Nope</div>
+                <div class="ui positive right labeled icon button">
+                    Yep, that's me
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <h4>Content Change Modal</h4>
+        <p>If a modal needs to change its size if anything in the modal would for a change to the size of the modal.</p>
+        <div class="ui buttons">
+            <a class="ui button blue" (click)="changeModal.open()">Observing Changes</a>
+            <div class="or"></div>
+            <a class="ui button blue" (click)="changeModalWithoutObserving.open()">Not Observing Changes</a>
+        </div>
+        <div class="ui large modal" #changeModalWithoutObserving observeChanges="false">
+            <div class="header">
+                Changing Your Thing
+            </div>
+            <div class="content">
+                <div tabContext="not-observing-changes">
+                    <div class="ui top attached tabular menu">
+                        <a class="active item" data-tab="small">Small Content</a>
+                        <a class="item" data-tab="medium">Medium Content</a>
+                        <a class="item" data-tab="large">Large Content</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="small">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="medium">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+
+In rutrum rutrum lacus non sagittis. Sed molestie ultrices felis quis placerat. Morbi fermentum auctor mi, sodales suscipit quam ultrices sed. Vivamus tempor velit nec magna vestibulum ornare. Pellentesque quis luctus elit. Cras aliquam ligula nunc. Etiam a egestas elit. Donec venenatis eros a viverra vestibulum. Ut vitae felis vel enim dictum finibus. Phasellus sagittis sed purus at cursus. Nunc a ipsum orci. Vestibulum at fringilla lorem.
+
+Sed vel magna blandit, rutrum elit a, suscipit quam. Nulla quis posuere justo. Integer ex ligula, dapibus sit amet lectus non, pharetra pharetra ligula. Proin tincidunt suscipit lorem, sed porttitor massa ullamcorper at. Nullam tempor arcu at quam facilisis finibus nec quis massa. Nullam eget tincidunt libero. Vestibulum sollicitudin porttitor metus, vel laoreet mi ornare ut. Fusce semper vulputate est vitae rhoncus. Proin vel mauris ac felis placerat malesuada.
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="large">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+
+In rutrum rutrum lacus non sagittis. Sed molestie ultrices felis quis placerat. Morbi fermentum auctor mi, sodales suscipit quam ultrices sed. Vivamus tempor velit nec magna vestibulum ornare. Pellentesque quis luctus elit. Cras aliquam ligula nunc. Etiam a egestas elit. Donec venenatis eros a viverra vestibulum. Ut vitae felis vel enim dictum finibus. Phasellus sagittis sed purus at cursus. Nunc a ipsum orci. Vestibulum at fringilla lorem.
+
+Sed vel magna blandit, rutrum elit a, suscipit quam. Nulla quis posuere justo. Integer ex ligula, dapibus sit amet lectus non, pharetra pharetra ligula. Proin tincidunt suscipit lorem, sed porttitor massa ullamcorper at. Nullam tempor arcu at quam facilisis finibus nec quis massa. Nullam eget tincidunt libero. Vestibulum sollicitudin porttitor metus, vel laoreet mi ornare ut. Fusce semper vulputate est vitae rhoncus. Proin vel mauris ac felis placerat malesuada.
+
+Donec ut urna eu dolor tristique accumsan varius nec sapien. Etiam maximus luctus massa, sit amet venenatis orci imperdiet at. Nunc pulvinar mattis dolor, non gravida mi pulvinar quis. Sed quis accumsan dolor, non suscipit ligula. Donec sit amet lobortis nulla. Sed euismod dolor sit amet placerat lobortis. Aenean sed egestas mauris. Vivamus in nulla non sem egestas ornare. Sed vitae libero eget odio pharetra pellentesque quis et eros. Etiam nulla sem, feugiat et lacus in, consequat commodo tortor.
+
+Nam malesuada, justo sed ultricies consequat, urna lectus sagittis risus, a efficitur felis turpis sed massa. Duis sed elit dui. Curabitur luctus tincidunt justo sed sollicitudin. Quisque venenatis nunc facilisis mauris suscipit, nec tincidunt mi porttitor. Donec a nibh blandit turpis fringilla consectetur. Integer ac risus sed metus luctus ornare eget lacinia est. Fusce laoreet volutpat quam, quis aliquam nulla ullamcorper nec. Aliquam aliquam gravida libero non rhoncus. Sed ac est sed nulla vulputate rutrum. Proin vel dolor placerat, varius eros id, mattis tortor. Vestibulum quis quam nec turpis rutrum rutrum ut eget ante. Nam quis lectus at tortor rhoncus rhoncus eu sed ligula. Phasellus tempor leo ex, sit amet porttitor tortor consectetur at.
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui negative button">No</div>
+                <div class="ui positive right labeled icon button">
+                    Yes
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui large modal" #changeModal>
+            <div class="header">
+                Changing Your Thing
+            </div>
+            <div class="content">
+                <div tabContext="observing-changes">
+                    <div class="ui top attached tabular menu">
+                        <a class="active item" data-tab="small">Small Content</a>
+                        <a class="item" data-tab="medium">Medium Content</a>
+                        <a class="item" data-tab="large">Large Content</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="small">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="medium">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+
+In rutrum rutrum lacus non sagittis. Sed molestie ultrices felis quis placerat. Morbi fermentum auctor mi, sodales suscipit quam ultrices sed. Vivamus tempor velit nec magna vestibulum ornare. Pellentesque quis luctus elit. Cras aliquam ligula nunc. Etiam a egestas elit. Donec venenatis eros a viverra vestibulum. Ut vitae felis vel enim dictum finibus. Phasellus sagittis sed purus at cursus. Nunc a ipsum orci. Vestibulum at fringilla lorem.
+
+Sed vel magna blandit, rutrum elit a, suscipit quam. Nulla quis posuere justo. Integer ex ligula, dapibus sit amet lectus non, pharetra pharetra ligula. Proin tincidunt suscipit lorem, sed porttitor massa ullamcorper at. Nullam tempor arcu at quam facilisis finibus nec quis massa. Nullam eget tincidunt libero. Vestibulum sollicitudin porttitor metus, vel laoreet mi ornare ut. Fusce semper vulputate est vitae rhoncus. Proin vel mauris ac felis placerat malesuada.
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="large">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ipsum ex, accumsan eget egestas eget, elementum eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed at ex pretium, sollicitudin massa non, ultricies nulla. Sed vel nibh luctus, efficitur tellus vitae, placerat dui. Quisque in est lobortis, semper tellus a, malesuada nunc. Sed eleifend viverra justo sit amet pellentesque. Aenean malesuada semper enim ut feugiat. In hac habitasse platea dictumst. Phasellus varius odio nisl, a volutpat dui euismod rhoncus. Quisque in egestas sem, eu efficitur urna.
+
+In rutrum rutrum lacus non sagittis. Sed molestie ultrices felis quis placerat. Morbi fermentum auctor mi, sodales suscipit quam ultrices sed. Vivamus tempor velit nec magna vestibulum ornare. Pellentesque quis luctus elit. Cras aliquam ligula nunc. Etiam a egestas elit. Donec venenatis eros a viverra vestibulum. Ut vitae felis vel enim dictum finibus. Phasellus sagittis sed purus at cursus. Nunc a ipsum orci. Vestibulum at fringilla lorem.
+
+Sed vel magna blandit, rutrum elit a, suscipit quam. Nulla quis posuere justo. Integer ex ligula, dapibus sit amet lectus non, pharetra pharetra ligula. Proin tincidunt suscipit lorem, sed porttitor massa ullamcorper at. Nullam tempor arcu at quam facilisis finibus nec quis massa. Nullam eget tincidunt libero. Vestibulum sollicitudin porttitor metus, vel laoreet mi ornare ut. Fusce semper vulputate est vitae rhoncus. Proin vel mauris ac felis placerat malesuada.
+
+Donec ut urna eu dolor tristique accumsan varius nec sapien. Etiam maximus luctus massa, sit amet venenatis orci imperdiet at. Nunc pulvinar mattis dolor, non gravida mi pulvinar quis. Sed quis accumsan dolor, non suscipit ligula. Donec sit amet lobortis nulla. Sed euismod dolor sit amet placerat lobortis. Aenean sed egestas mauris. Vivamus in nulla non sem egestas ornare. Sed vitae libero eget odio pharetra pellentesque quis et eros. Etiam nulla sem, feugiat et lacus in, consequat commodo tortor.
+
+Nam malesuada, justo sed ultricies consequat, urna lectus sagittis risus, a efficitur felis turpis sed massa. Duis sed elit dui. Curabitur luctus tincidunt justo sed sollicitudin. Quisque venenatis nunc facilisis mauris suscipit, nec tincidunt mi porttitor. Donec a nibh blandit turpis fringilla consectetur. Integer ac risus sed metus luctus ornare eget lacinia est. Fusce laoreet volutpat quam, quis aliquam nulla ullamcorper nec. Aliquam aliquam gravida libero non rhoncus. Sed ac est sed nulla vulputate rutrum. Proin vel dolor placerat, varius eros id, mattis tortor. Vestibulum quis quam nec turpis rutrum rutrum ut eget ante. Nam quis lectus at tortor rhoncus rhoncus eu sed ligula. Phasellus tempor leo ex, sit amet porttitor tortor consectetur at.
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui negative button">No</div>
+                <div class="ui positive right labeled icon button">
+                    Yes
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <h4>Multiple Modals</h4>
+        <p>Sometimes multiple modals are needed to get all the data from the users.  These are two ways modals can be displayed.</p>
+        <div class="ui buttons">
+            <a class="ui button blue" (click)="hideMultipleModalFirst.open()">Hides Multiple</a>
+            <div class="or"></div>
+            <a class="ui button blue" (click)="showMultipleModalFirst.open()">Shows Multiple</a>
+        </div>
+
+        <div class="ui modal" #hideMultipleModalFirst>
+            <i class="close icon"></i>
+            <div class="header">First Modal</div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <i class="icon right arrow"></i>
+                </div>
+                <div class="description">
+                    This is the first modal in the chain
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">Nope</div>
+                <div class="ui right labeled icon button blue" (click)="hideMultipleModalSecond.open()">
+                    Proceed
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui basic modal" #hideMultipleModalSecond>
+            <div class="ui icon header">
+                <i class="archive icon"></i>
+                Archive Old Messages
+            </div>
+            <div class="content">
+                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+            </div>
+            <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <div class="ui green inverted button" (click)="hideMultipleModalSecond.close(true)">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+        <div class="ui modal" #showMultipleModalFirst allowMultiple="true">
+            <i class="close icon"></i>
+            <div class="header">First Modal</div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <i class="icon right arrow"></i>
+                </div>
+                <div class="description">
+                    This is the first modal in the chain
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">Nope</div>
+                <div class="ui right labeled icon button blue" (click)="showMultipleModalSecond.open()">
+                    Proceed
+                    <i class="right arrow icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui basic modal" #showMultipleModalSecond allowMultiple="true">
+            <div class="ui icon header">
+                <i class="archive icon"></i>
+                Archive Old Messages
+            </div>
+            <div class="content">
+                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+            </div>
+            <div class="actions">
+                <div class="ui red basic cancel inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </div>
+                <div class="ui green inverted button" (click)="showMultipleModalSecond.close(true)">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui tab" data-tab="modal-settings">
+        <h2>Directives / Components</h2>
+        <p>A set of directives and components that work together to create modals</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Usage</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>.ui.modal</td>
+                    <td>&lt;div class="ui modal" #modal&gt;&lt;/div&gt;</td>
+                    <td>This is the modal that will be displayed once the open method is called.</td>
+                </tr>
+                <tr>
+                    <td>[modalContext]</td>
+                    <td>&lt;div modalContext&gt;&lt;/div&gt;</td>
+                    <td>The context in which the modal should be embedded into, the default is the body tag.</td>
+                </tr>
+                <tr>
+                    <td>.positive,.approve,.ok</td>
+                    <td>&lt;a class="ui button positive green"&gt;&lt;/a&gt;</td>
+                    <td>Button that will trigger an approve event and close the modal.</td>
+                </tr>
+                 <tr>
+                    <td>.negative,.deny,.cancel</td>
+                    <td>&lt;a class="ui button negative red"&gt;&lt;/a&gt;</td>
+                    <td>Button that will trigger a deny event and close the modal.</td>
+                </tr>
+                 <tr>
+                    <td>.close.icon</td>
+                    <td>&lt;i class="close icon"&gt;&lt;/i&gt;</td>
+                    <td>Button that will close the modal.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Settings</h2>
+        <p>Settings that can be added to the elements to change the functionality of the modal.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[observeChanges]</td>
+                    <td>true</td>
+                    <td>Will observe the DOM of the modal and update the position to fit the screen.</td>
+                </tr>
+                <tr>
+                    <td>[allowMultiple]</td>
+                    <td>false</td>
+                    <td>If set to true will allow multiple modals to be visible at once.</td>
+                </tr>
+                <tr>
+                    <td>[closable]</td>
+                    <td>true</td>
+                    <td>Will close the modal if the dimmer is clicked.</td>
+                </tr>
+                <tr>
+                    <td>[transition]</td>
+                    <td>Scale</td>
+                    <td>The transition the modal should use when opening/closing.</td>
+                </tr>
+                <tr>
+                    <td>[duration]</td>
+                    <td>400</td>
+                    <td>The duration of the transition in milliseconds.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Callbacks</h2>
+        <p>Callbacks that can be added to the elements to add extra functionality on the events of the modal.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>(show)</td>
+                    <td>Triggers when the modal is opened and before the animation ends.</td>
+                </tr>
+                <tr>
+                    <td>(visible)</td>
+                    <td>Triggers when the modal animation to show ends.</td>
+                </tr>
+                <tr>
+                    <td>(hide)</td>
+                    <td>Triggers when the modal is starting to hide but before the animation ends.</td>
+                </tr>
+                <tr>
+                    <td>(hidden)</td>
+                    <td>Triggers when the modal is hidden and the animation ends.</td>
+                </tr>
+                <tr>
+                    <td>(approve)</td>
+                    <td>Triggered when the approved directive is clicked.</td>
+                </tr>
+                <tr>
+                    <td>(deny)</td>
+                    <td>Triggered when the deny directive is clicked.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
