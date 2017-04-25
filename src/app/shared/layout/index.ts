@@ -1,5 +1,5 @@
 /**
- * Created by bradleybrandon on 4/21/17.
+ * Created by webappaloosa on 4/21/17.
  */
 export {LayoutService} from './layout.service';
 export {LayoutModule} from './layout.module';

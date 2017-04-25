@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
         BrowserModule,
         BrowserAnimationsModule,
         routing,
-        NgxSemanticUiModule.forRoot(),
+        NgxSemanticUiModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
