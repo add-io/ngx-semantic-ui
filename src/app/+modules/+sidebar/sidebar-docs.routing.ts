@@ -1,5 +1,5 @@
 /**
- * Created by bradleybrandon on 4/21/17.
+ * Created by webappaloosa on 4/21/17.
  */
 import {RouterModule, Routes} from "@angular/router";
 import {SidebarDocsComponent} from "./sidebar-docs.component";
