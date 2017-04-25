@@ -1,5 +1,5 @@
 export { DropDownDirective } from "./dropdown.directive";
-export { OptionDirective } from "./helper-directives";
+export { OptionDirective, InputHiddenDirective, InputSearchDirective } from "./helper-directives";
 export { DropdownComponent } from "./dropdown.component";
 export { DropdownItemDirective } from "./dropdown-item.directive";
 export { DropdownSelectionDirective } from "./dropdown-selection.directive";

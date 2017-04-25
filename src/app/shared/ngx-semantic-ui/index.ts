@@ -1,6 +1,6 @@
 export {
     TabDirective, TabTriggerDirective, TabContextDirective, TabService,
-    DropDownDirective, OptionDirective, DropdownComponent, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective,
+    DropDownDirective, InputSearchDirective, OptionDirective, DropdownComponent, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective,
     CheckboxDirective, RadioCheckboxDirective,
     AccordionContentComponent, AccordionDirective, AccordionTitleDirective,
     PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective,

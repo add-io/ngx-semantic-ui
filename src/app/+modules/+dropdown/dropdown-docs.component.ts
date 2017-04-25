@@ -6,6 +6,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DropDownDocsComponent implements OnInit {
 
+    selectValue: number;
+
     constructor() {
     }
 

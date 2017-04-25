@@ -1,15 +1,17 @@
 import { Component } from "@angular/core";
 
 import { DropDownDirective } from "./dropdown.directive";
+import { BehaviorSubject } from "rxjs";
+import { IDropdownItem } from "./dropdown-selection.directive";
 
 @Component({
     selector: "ngx-dropdown",
     template:
-`<div class="ui dropdown selection">
+`<div class="ui dropdown selection" (change)="change($event)">
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
     <div class="menu">
-        <div class="item" *ngFor="let item of items">{{item.label}}</div>
+        <div class="item" *ngFor="let item of items" data-value="{{item.value}}">{{item.label}}</div>
     </div>
 </div>`
 })
@@ -33,6 +35,12 @@ export class DropdownComponent {
             return this.directive.options.filter(x => !(x.value === "" || x.value === null || x.value === undefined));
         }
         return [];
+    }
+
+    change(item: IDropdownItem) {
+        if (this.directive !== null) {
+            this.directive.onChange(item);
+        }
     }
 
     open() {
