@@ -11,6 +11,12 @@ export interface IDropdownItem {
     label: string;
 }
 
+export interface IDropdownMultiItem {
+    item: IDropdownItem;
+    element: HTMLAnchorElement;
+    click?: Function;
+}
+
 export interface ISearchItem {
     element: HTMLInputElement;
     isFocus: boolean;
@@ -19,24 +25,30 @@ export interface ISearchItem {
     keydown?: Function;
 }
 
-@Directive({ selector: ".ui.dropdown.selection" })
+@Directive({ selector: ".ui.dropdown.selection,[ngx-select-dropdown]" })
 export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
 
     private _isOpen: boolean = false;
     private _isAnimating: boolean = false;
-    private _transition: TransitionService;
     private _defaultText: string;
     private _searchInput: ISearchItem;
+    private _transition: TransitionService;
 
-    selectedItem: IDropdownItem = null;
+    selectedItem: IDropdownItem|IDropdownMultiItem[] = null;
 
     @Input("class") klass: string;
-    @Output("change") onChange: EventEmitter<IDropdownItem> = new EventEmitter<IDropdownItem>();
+    @Input("multiple") multiple: boolean;
+    @Input("search") search: boolean;
+    @Output("change") onChange: EventEmitter<IDropdownItem|IDropdownItem[]> = new EventEmitter<IDropdownItem>();
 
     @HostBinding("class.active")
     @HostBinding("class.visible")
     get isOpen(): boolean {
         return this._isOpen;
+    }
+
+    get isMultiple(): boolean {
+        return this.klass.indexOf("multiple") > -1 || this.multiple == true;
     }
 
     set isOpen(open: boolean) {
@@ -46,7 +58,7 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
             this.text.isFiltered = false;
         } else {
             this.items.forEach(x => {
-                x.isFiltered = false;
+                x.isFiltered = this.isMultiple && this.selectedItem !== null ? (<IDropdownMultiItem[]>this.selectedItem).findIndex(y => y.item.value == x.value) > -1 : false;
             });
         }
 
@@ -69,7 +81,7 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
     }
 
     get isSearchable(): boolean {
-        return this.klass.indexOf("search") > -1;
+        return this.klass.indexOf("search") > -1 || this.search === true;
     }
 
     @ContentChildren(DropdownItemDirective, { descendants: true }) items: QueryList<DropdownItemDirective>;
@@ -77,7 +89,7 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
     @ContentChild(DropdownTextDirective) text: DropdownTextDirective;
     @ContentChild(InputHiddenDirective) input: InputHiddenDirective;
 
-    constructor(private _renderer: Renderer2, private _element: ElementRef,private _container: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
+    constructor(private _renderer: Renderer2, private _element: ElementRef, private _container: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
         this._transition = new TransitionService(this._renderer);
         this._renderer.listen("window", "click", () => { if(this.isOpen) { this.isOpen = false; } });
     }
@@ -87,19 +99,73 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
         if (!this.isOpen) {
             this.isOpen = true;
         }
+        if (this.isSearchable && this.isOpen) {
+            this._searchInput.element.focus();
+        }
         event.stopPropagation();
         event.preventDefault();
     }
 
     selectItem(item: IDropdownItem) {
-        if (this.selectedItem != item) this.onChange.emit(item);
+        if (this.isMultiple) {
+            this.selectedItem = this.selectedItem || [];
+            let index = (<IDropdownMultiItem[]>this.selectedItem).findIndex(x => x.item.value === item.value);
+            if (index > -1) {
+                (<IDropdownMultiItem[]>this.selectedItem).splice(index, 1);
+            } else {
+                let newItem: IDropdownMultiItem = {
+                    element: this._renderer.createElement("a"),
+                    item: item
+                };
 
-        this.selectedItem = item;
-        if (item != null) {
-            this.text.element.nativeElement.innerHTML = item.label;
-            this._renderer.removeClass(this.text.element.nativeElement, "default");
+                let removeElement = this._renderer.createElement("i");
+                this._renderer.setStyle(newItem.element, "display", "inline-block !important");
+                this._transition.addClasses(newItem.element, "ui label visible");
+                this._transition.addClasses(removeElement, "delete icon");
+
+                newItem.click = this._renderer.listen(removeElement, "click", (event: MouseEvent) => {
+                    this._transition.animate(newItem.element, "scale", 200, "out").then(() => {
+                        (<IDropdownMultiItem[]>this.selectedItem).splice((<IDropdownMultiItem[]>this.selectedItem).indexOf(newItem), 1);
+                        newItem.click();
+                        newItem.element.remove();
+
+                        this.onChange.emit((<IDropdownMultiItem[]>this.selectedItem).map(x => { return { value: x.item.value, label: x.item.label }; }));
+                        let item = this.items.find(x => x.value === newItem.item.value);
+                        if (item !== undefined) {
+                            item.isFiltered = false;
+                        }
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+
+                newItem.element.innerHTML = item.label;
+                newItem.element.appendChild(removeElement);
+
+                // Insert before the text element
+                this.text.element.nativeElement.parentNode.insertBefore(newItem.element, this.text.element.nativeElement);
+                this._transition.animate(newItem.element, "scale");
+
+                (<IDropdownMultiItem[]>this.selectedItem).push(newItem);
+                if (this.isSearchable) {
+                    this._searchInput.element.focus();
+                    this.items.forEach(x => {
+                        x.isFiltered = this.isMultiple && this.selectedItem !== null ? (<IDropdownMultiItem[]>this.selectedItem).findIndex(y => y.item.value == x.value) > -1 : false;
+                    });
+                }
+            }
+
+            this.onChange.emit((<IDropdownMultiItem[]>this.selectedItem).map(x => { return { value: x.item.value, label: x.item.label }; }));
+        } else {
+            if (this.selectedItem != item) this.onChange.emit(item);
+
+            this.selectedItem = item;
+            if (item != null) {
+                this.text.element.nativeElement.innerHTML = item.label;
+                this._renderer.removeClass(this.text.element.nativeElement, "default");
+            }
+            this.isOpen = false;
         }
-        this.isOpen = false;
     }
 
     ngAfterViewInit() {
@@ -110,7 +176,12 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
         })
 
         if (this.isSearchable) {
+            console.log("Searcher");
             this.buildSearchInput();
+        }
+
+        if (this.klass.indexOf("multiple") == -1) {
+            this._renderer.addClass(this._element.nativeElement, "multiple");
         }
     }
 

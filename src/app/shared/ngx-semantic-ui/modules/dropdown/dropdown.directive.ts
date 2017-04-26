@@ -2,11 +2,14 @@ import { Directive, Optional, Input, ContentChildren, QueryList, AfterViewInit, 
 import { NgModel } from "@angular/forms";
 import { OptionDirective } from "./helper-directives";
 
-import { DropdownComponent } from "./dropdown.component";
+import { DropdownSelectComponent } from "./helper-components";
 import { IDropdownItem } from "./dropdown-selection.directive";
 
 @Directive({ selector: "select.ui.dropdown" })
 export class DropDownDirective implements AfterViewInit {
+
+    @Input("class") klass: string;
+    @Input("multiple") multiple: string;
 
     @ContentChildren(OptionDirective) options: QueryList<OptionDirective>;
     private selectedValue: IDropdownItem = null;
@@ -15,7 +18,7 @@ export class DropDownDirective implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        let factory = this._componentFactoryResolver.resolveComponentFactory(DropdownComponent);
+        let factory = this._componentFactoryResolver.resolveComponentFactory(DropdownSelectComponent);
         let ref = this._container.createComponent(factory);
         ref.instance.directive = this;
     }
@@ -25,9 +28,13 @@ export class DropDownDirective implements AfterViewInit {
         return "none";
     }
 
-    onChange(item: IDropdownItem) {
+    onChange(item: IDropdownItem|IDropdownItem[]) {
         if (this._model != null) {
-            this._model.control.setValue(item.value);
+            if (Array.isArray(item)) {
+                this._model.control.setValue(item.map(x => x.value));
+            } else {
+                this._model.control.setValue(item.value);
+            }
         }
     }
 }

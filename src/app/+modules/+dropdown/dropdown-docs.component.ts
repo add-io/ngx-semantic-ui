@@ -7,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
 export class DropDownDocsComponent implements OnInit {
 
     selectValue: number;
+    multipleSelectValue: string[];
 
     constructor() {
     }
@@ -14,4 +15,7 @@ export class DropDownDocsComponent implements OnInit {
     ngOnInit() {
     }
 
+    printMulti() {
+        return JSON.stringify(this.multipleSelectValue, null, 2);
+    }
 }

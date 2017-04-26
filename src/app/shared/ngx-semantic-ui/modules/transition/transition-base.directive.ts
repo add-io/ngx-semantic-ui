@@ -1,11 +1,11 @@
 import { Renderer2 } from "@angular/core";
 
-export class TransitionService {
+export class TransitionBaseDirective {
 
-    constructor(private _renderer: Renderer2) {
+    constructor(protected _renderer: Renderer2) {
     }
 
-    public animate(ele: any, animation: string, duration: number = 400, direction: "in"|"out" = "in"): Promise<void> {
+    protected animate(ele: any, animation: string, duration: number = 400, direction: "in"|"out" = "in"): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             let animations = animation.split(" ");
             animations.push(direction);
@@ -50,7 +50,7 @@ export class TransitionService {
      * @param ele The element we need to add classes to.
      * @param classes A list of classes that need to be added to the element.
      */
-    public addClasses(ele: any, ...classes: string[]) {
+    protected addClasses(ele: any, ...classes: string[]) {
         for(let i = 0; i < classes.length; ++i) {
             let list = classes[i].split(" ");
             for(let j = 0; j < list.length; ++j) {
@@ -64,7 +64,7 @@ export class TransitionService {
      *
      * @param boolType The boolean type we need to process.
      */
-    public checkBooleanType(boolType: boolean|string|number) {
+    protected checkBooleanType(boolType: boolean|string|number) {
         return boolType === "true"
             || boolType === true
             || boolType === "1"
