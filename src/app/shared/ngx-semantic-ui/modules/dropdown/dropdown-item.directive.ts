@@ -10,6 +10,10 @@ export class DropdownItemDirective {
         return this.element.nativeElement.innerHTML;
     }
 
+    get text(): string {
+        return this.element.nativeElement.innerText;
+    }
+
     public isFiltered: boolean = false;
 
     constructor(public element: ElementRef) {

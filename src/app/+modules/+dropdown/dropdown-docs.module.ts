@@ -5,7 +5,7 @@ import {FormsModule} from "@angular/forms";
 import { DropDownDocsRouting } from './dropdown-docs.routing';
 import { DropDownDocsComponent} from './dropdown-docs.component';
 
-import { DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective } from "../../shared/ngx-semantic-ui"
+import { DropdownService, SearchInputComponent, MultiSelectLabelComponent, DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective } from "../../shared/ngx-semantic-ui"
 
 @NgModule({
     imports: [
@@ -23,10 +23,12 @@ import { DropDownDirective, DropdownSelectComponent, InputSearchDirective, Optio
         DropdownMenuDirective,
         InputHiddenDirective,
         InputSearchDirective,
-        DropdownSelectComponent
+        DropdownSelectComponent,
+        MultiSelectLabelComponent,
+        SearchInputComponent
     ],
-    providers: [],
-    entryComponents: [DropdownSelectComponent]
+    providers: [DropdownService],
+    entryComponents: [DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent]
 })
 export class DropDownDocsModule {
 }
