@@ -1,6 +1,11 @@
 export {
     TabDirective, TabTriggerDirective, TabContextDirective, TabService,
-    DropdownService, DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor, IconDropdownDirective, SearchInputComponent, MultiSelectLabelComponent, DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective,
+
+    // #region Dropdown Includes
+    DropdownSelectDirective, DropdownDirective, DropdownService, InputDirective, SearchInputDirective,
+    DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent, IconDirective, InputHiddenDirective,
+    ItemDirective, MenuDirective, OptionDirective, TextDirective, DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor,
+    // #endregion
     CheckboxDirective, RadioCheckboxDirective,
     AccordionContentComponent, AccordionDirective, AccordionTitleDirective,
     PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective,

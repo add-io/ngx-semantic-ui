@@ -18,9 +18,9 @@
         <p>Select statements with the class ".ui.dropdown" will be converted into a dropdown by default.</p>
         <p>Selected Value: {{selectValue == null ? "Nothing Selected" : selectValue}}</p>
         <select class="ui dropdown" [(ngModel)]='selectValue'>
-        <option value="">Gender</option>
-        <option value="1">Male</option>
-        <option value="0">Female</option>
+            <option value="">Gender</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
         </select>
 
         <div class="ui divider"></div>
@@ -311,58 +311,58 @@
         <p>Multiple select dropdown can also have a search component added to it as well.</p>
         <div class="ui block"><pre [innerHTML]="stringify(multipleSearchSelectValue)"></pre></div>
         <select class="ui fluid search dropdown" multiple="" [(ngModel)]="multipleSearchSelectValue">
-        <option value="">State</option>
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="DC">District Of Columbia</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-        <option value="ID">Idaho</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="IA">Iowa</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="ME">Maine</option>
-        <option value="MD">Maryland</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MS">Mississippi</option>
-        <option value="MO">Missouri</option>
-        <option value="MT">Montana</option>
-        <option value="NE">Nebraska</option>
-        <option value="NV">Nevada</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NY">New York</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VT">Vermont</option>
-        <option value="VA">Virginia</option>
-        <option value="WA">Washington</option>
-        <option value="WV">West Virginia</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WY">Wyoming</option>
+            <option value="">State</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
         </select>
 
         <div class="ui divider"></div>
@@ -619,11 +619,234 @@
                 <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
             </div>
         </div>
+
+        <div class="ui divider"></div>
+
+        <h4>Dropdown with embedded search</h4>
+        <p>The item list can also have an embedded search and the input will not create a search in itself.</p>
+        <p>Selected Value: {{embeddedSearchValue == null ? "Nothing Selected" : embeddedSearchValue}}</p>
+        <div class="ui floating dropdown labeled icon button" [(ngModel)]="embeddedSearchValue">
+            <i class="filter icon"></i>
+            <span class="text">Filter Posts</span>
+            <div class="menu">
+                <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="Search tags...">
+                </div>
+                <div class="divider"></div>
+                <div class="header">
+                    <i class="tags icon"></i>
+                    Tag Label
+                </div>
+                <div class="scrolling menu">
+                    <div class="item">
+                        <div class="ui red empty circular label"></div>
+                        Important
+                    </div>
+                    <div class="item">
+                        <div class="ui blue empty circular label"></div>
+                        Announcement
+                    </div>
+                    <div class="item">
+                        <div class="ui black empty circular label"></div>
+                        Cannot Fix
+                    </div>
+                    <div class="item">
+                        <div class="ui purple empty circular label"></div>
+                        News
+                    </div>
+                    <div class="item">
+                        <div class="ui orange empty circular label"></div>
+                        Enhancement
+                    </div>
+                    <div class="item">
+                        <div class="ui empty circular label"></div>
+                        Change Declined
+                    </div>
+                    <div class="item">
+                        <div class="ui yellow empty circular label"></div>
+                        Off Topic
+                    </div>
+                    <div class="item">
+                        <div class="ui pink empty circular label"></div>
+                        Interesting
+                    </div>
+                    <div class="item">
+                        <div class="ui green empty circular label"></div>
+                        Discussion
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="ui tab" data-tab="dropdown-menus">
-        Menus
+        <h4>Basic Dropdown Menu</h4>
+        <p>Dropdowns can also be used for menu items.</p>
+        <div class="ui dropdown">
+            <div class="text">File</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">New</div>
+                <div class="item">
+                    <span class="description">ctrl + o</span>
+                    Open...
+                </div>
+                <div class="item">
+                    <span class="description">ctrl + s</span>
+                    Save as...
+                </div>
+                <div class="item">
+                    <span class="description">ctrl + r</span>
+                    Rename
+                </div>
+                <div class="item">Make a copy</div>
+                <div class="item">
+                    <i class="folder icon"></i>
+                    Move to folder
+                </div>
+                <div class="item">
+                    <i class="trash icon"></i>
+                    Move to trash
+                </div>
+                <div class="divider"></div>
+                <div class="item">Download As...</div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    Publish To Web
+                    <div class="menu">
+                        <div class="item">Google Docs</div>
+                        <div class="item">Google Drive</div>
+                        <div class="item">Dropbox</div>
+                        <div class="item">Adobe Creative Cloud</div>
+                        <div class="item">Private FTP</div>
+                        <div class="item">Another Service...</div>
+                    </div>
+                </div>
+                <div class="item">E-mail Collaborators</div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <h4>Pointing Menu</h4>
+        <p>Dropdowns can be formated to deal with pointing menus.</p>
+        <div class="ui menu">
+            <a class="item">
+                Home
+            </a>
+            <div class="ui pointing dropdown link item">
+                <span class="text">Shopping</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="header">Categories</div>
+                    <div class="item">
+                        <i class="dropdown icon"></i>
+                        <span class="text">Clothing</span>
+                        <div class="menu">
+                            <div class="header">Mens</div>
+                            <div class="item">Shirts</div>
+                            <div class="item">Pants</div>
+                            <div class="item">Jeans</div>
+                            <div class="item">Shoes</div>
+                            <div class="divider"></div>
+                            <div class="header">Womens</div>
+                            <div class="item">Dresses</div>
+                            <div class="item">Shoes</div>
+                            <div class="item">Bags</div>
+                        </div>
+                    </div>
+                    <div class="item">Home Goods</div>
+                    <div class="item">Bedroom</div>
+                    <div class="divider"></div>
+                    <div class="header">Order</div>
+                    <div class="item">Status</div>
+                    <div class="item">Cancellations</div>
+                </div>
+            </div>
+            <a class="item">
+                Forums
+            </a>
+            <a class="item">
+                Contact Us
+            </a>
+        </div>
+        <div class="ui vertical menu">
+            <a class="item">
+                Home
+            </a>
+            <div class="ui left pointing dropdown link item">
+                <i class="dropdown icon"></i>
+                Messages
+                <div class="menu">
+                    <div class="item">Inbox</div>
+                    <div class="item">Starred</div>
+                    <div class="item">Sent Mail</div>
+                    <div class="item">Drafts (143)</div>
+                    <div class="divider"></div>
+                    <div class="item">Spam (1009)</div>
+                    <div class="item">Trash</div>
+                </div>
+            </div>
+            <a class="item">
+                Browse
+            </a>
+            <a class="item">
+                Help
+            </a>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <h4>Menu Direction</h4>
+        <p>Sub menu items can be configured to deal with seperate directions.</p>
+        <div class="ui floating labeled icon dropdown button">
+            <i class="dropdown icon"></i>
+            <span class="text">Menu</span>
+            <div class="menu">
+                <div class="item">
+                    <i class="left dropdown icon"></i>
+                    <span class="text">Left</span>
+                    <div class="left menu">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    <span class="text">Right</span>
+                    <div class="right menu">
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="ui tab" data-tab="dropdown-settings">
-        Settings
+        <h2>Directives / Components</h2>
+        <p>A set of directives to cause a dropdown to be created.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Usage</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>.ui.dropdown</td>
+                    <td>&lt;div class="ui dropdown"&gt;&lt;/div&gt;</td>
+                    <td>This is the basic dropdown that can be attached to other elements besides select elements.</td>
+                </tr>
+                <tr>
+                    <td>select.ui.dropdown</td>
+                    <td>&lt;select class="ui dropdown" &gt;&lt;/select&gt;</td>
+                    <td>The basic dropdown that can be added to select inputs.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

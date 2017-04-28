@@ -1,33 +1,31 @@
 import { Injectable } from "@angular/core";
-import { DropdownSelectionDirective } from "./dropdown-selection.directive";
+import { IDropdownProcessor } from "./processors";
 
 @Injectable()
 export class DropdownService {
 
-    private selections: DropdownSelectionDirective[];
+    private processors: IDropdownProcessor[];
 
     constructor() {
-        this.selections = [];
+        this.processors = [];
     }
 
-    addSelection(selection: DropdownSelectionDirective) {
-        if (this.selections.indexOf(selection) === -1) {
-            this.selections.push(selection);
+    add(processor: IDropdownProcessor) {
+        if (this.processors.indexOf(processor) === -1) {
+            this.processors.push(processor);
         }
     }
 
-    removeSelection(selection: DropdownSelectionDirective) {
-        if (this.selections.indexOf(selection) > -1) {
-            this.selections.splice(this.selections.indexOf(selection), 1);
+    remove(processor: IDropdownProcessor) {
+        if (this.processors.indexOf(processor) > -1) {
+            this.processors.splice(this.processors.indexOf(processor), 1);
         }
     }
 
-    hideAll(exludeSelection?: DropdownSelectionDirective) {
-        for(let i = 0; i < this.selections.length; ++i) {
-            if (this.selections[i] !== exludeSelection) {
-                if (this.selections[i].isOpen) {
-                    this.selections[i].isOpen = false;
-                }
+    hideAll(excludeItem?: IDropdownProcessor) {
+        for(let i = 0; i < this.processors.length; ++i) {
+            if (this.processors[i] !== excludeItem) {
+                this.processors[i].close();
             }
         }
     }

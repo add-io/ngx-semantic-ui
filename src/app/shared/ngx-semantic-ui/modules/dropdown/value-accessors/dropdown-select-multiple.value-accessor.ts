@@ -1,7 +1,8 @@
 import { Directive, Provider, forwardRef, Self, ElementRef, Renderer2 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
-import { IDropdownItem, DropdownSelectionDirective } from "./dropdown-selection.directive";
+import { DropdownDirective } from "../dropdown.directive";
+import { ItemDirective } from "../directives";
 
 export const SELECT_DROPDOWN_MULTIPLE_VALUE_ACCESSOR: Provider = {
     provide: NG_VALUE_ACCESSOR,
@@ -10,24 +11,24 @@ export const SELECT_DROPDOWN_MULTIPLE_VALUE_ACCESSOR: Provider = {
 };
 
 @Directive({
-    selector: ".ui.dropdown.selection.multiple[ngModel],.ui.dropdown.selection.multiple[formControlName],.ui.dropdown.selection.multiple[formControl]",
+    selector: ".ui.dropdown.multiple[ngModel]:not(select),.ui.dropdown.multiple[formControlName]:not(select),.ui.dropdown.multiple[formControl]:not(select)",
     host: { "(change)": "onChange($event)", "(blur)": "onTouched()" },
     providers: [ SELECT_DROPDOWN_MULTIPLE_VALUE_ACCESSOR ]
 })
 export class DropdownSelectMultipleValueAccessor implements ControlValueAccessor {
 
-    onChange = (items: IDropdownItem[]) => {};
+    onChange = (items: ItemDirective[]) => {};
     onTouched = () => {};
 
-    constructor(@Self() private _selection: DropdownSelectionDirective, private _element: ElementRef, private _renderer: Renderer2) {
+    constructor(@Self() private _dropdown: DropdownDirective, private _element: ElementRef, private _renderer: Renderer2) {
     }
 
     writeValue(value: any): void {
-        this._selection.initValue(value);
+        this._dropdown.initilizeValue(value);
     }
 
     registerOnChange(fn: (value: any) => any): void {
-        this.onChange = (items: IDropdownItem[]) => {
+        this.onChange = (items: ItemDirective[]) => {
             if (Array.isArray(items)) {
                 fn(items.map(x => x.value));
             }

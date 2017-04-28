@@ -1,8 +1,8 @@
 import { Directive, AfterViewInit, Input, ElementRef, Renderer2, Optional, HostBinding, ViewContainerRef } from "@angular/core";
-import { IDropdownItem } from "./dropdown-selection.directive";
+import { ItemDirective } from "./item.directive";
 
 @Directive({ selector: ".text", host: { "[class.filtered]": "isFiltered" } })
-export class DropdownTextDirective implements AfterViewInit {
+export class TextDirective implements AfterViewInit {
 
     public isFiltered: boolean = false;
     public defaultText: string = null;
@@ -25,7 +25,7 @@ export class DropdownTextDirective implements AfterViewInit {
         this.defaultText = this._element.nativeElement.innerHTML;
     }
 
-    public updateText(item: IDropdownItem) {
+    public updateText(item: ItemDirective) {
         this.label = item.label;
     }
 }

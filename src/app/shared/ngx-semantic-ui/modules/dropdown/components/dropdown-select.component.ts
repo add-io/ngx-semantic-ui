@@ -1,13 +1,14 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, Renderer2 } from "@angular/core";
 
-import { DropDownDirective } from "../dropdown.directive";
+import { DropdownSelectDirective } from "../dropdown-select.directive";
 import { BehaviorSubject } from "rxjs";
-import { IDropdownItem } from "../dropdown-selection.directive";
+import { ItemDirective } from "../directives";
 
 @Component({
     selector: "ngx-dropdown-select",
     template:
 `<div class="ui dropdown selection" *ngIf="!isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
+    <input type="hidden" />
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
     <div class="menu">
@@ -15,6 +16,7 @@ import { IDropdownItem } from "../dropdown-selection.directive";
     </div>
 </div>
 <div class="ui dropdown selection multiple" *ngIf="isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
+    <input type="hidden" />
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
     <div class="menu">
@@ -24,7 +26,7 @@ import { IDropdownItem } from "../dropdown-selection.directive";
 })
 export class DropdownSelectComponent implements AfterViewInit {
 
-    directive: DropDownDirective = null;
+    directive: DropdownSelectDirective = null;
 
     get defaultText(): string {
         if (this.directive !== null) {
@@ -65,7 +67,7 @@ export class DropdownSelectComponent implements AfterViewInit {
         }
     }
 
-    change(item: IDropdownItem|IDropdownItem[]) {
+    change(item: ItemDirective|ItemDirective[]) {
         if (this.directive !== null) {
             this.directive.onChange(item);
         }

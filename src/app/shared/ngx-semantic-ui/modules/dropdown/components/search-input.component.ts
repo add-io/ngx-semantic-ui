@@ -1,7 +1,6 @@
 import { Component, HostListener, HostBinding, ElementRef, QueryList } from "@angular/core";
 
-import { DropdownItemDirective } from "../dropdown-item.directive";
-import { DropdownTextDirective } from "../dropdown-text.directive";
+import { ItemDirective, TextDirective } from "../directives";
 
 @Component({
     selector: "input.search.ngx-select-search-input[type='text']",
@@ -9,8 +8,8 @@ import { DropdownTextDirective } from "../dropdown-text.directive";
 })
 export class SearchInputComponent {
 
-    public items: QueryList<DropdownItemDirective> = null;
-    public text: DropdownTextDirective = null;
+    public items: QueryList<ItemDirective> = null;
+    public text: TextDirective = null;
 
     public get value(): string {
         return this._element.nativeElement.value;

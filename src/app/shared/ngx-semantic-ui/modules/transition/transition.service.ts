@@ -60,6 +60,21 @@ export class TransitionService {
     }
 
     /**
+     * Helper method to add classes to the element given.
+     *
+     * @param ele The element we need to add classes to.
+     * @param classes A list of classes that need to be added to the element.
+     */
+    public removeClasses(ele: any, ...classes: string[]) {
+        for(let i = 0; i < classes.length; ++i) {
+            let list = classes[i].split(" ");
+            for(let j = 0; j < list.length; ++j) {
+                this._renderer.removeClass(ele, list[j]);
+            }
+        }
+    }
+
+    /**
      * Helper method to convert the string|number to a bollean.
      *
      * @param boolType The boolean type we need to process.

@@ -11,6 +11,7 @@ export class DropDownDocsComponent implements OnInit {
     multipleSelectValue: string[];
     multipleSearchSelectValue: string[];
     specialSelectValue: string[] = ["af"];
+    embeddedSearchValue: string;
 
     constructor() {
     }

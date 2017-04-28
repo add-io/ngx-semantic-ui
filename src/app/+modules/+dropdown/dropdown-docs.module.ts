@@ -6,7 +6,11 @@ import { DropDownDocsRouting } from './dropdown-docs.routing';
 import { DropDownDocsComponent} from './dropdown-docs.component';
 import { NgxSemanticUiModule } from '../../shared/ngx-semantic-ui.module'
 
-import { DropdownService, DropdownSelectMultipleValueAccessor, DropdownSelectValueAccessor, IconDropdownDirective, SearchInputComponent, MultiSelectLabelComponent, DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective } from "../../shared/ngx-semantic-ui"
+import {
+    DropdownSelectDirective, DropdownDirective, DropdownService, InputDirective, SearchInputDirective,
+    DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent, IconDirective, InputHiddenDirective,
+    ItemDirective, MenuDirective, OptionDirective, TextDirective, DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor
+} from "../../shared/ngx-semantic-ui"
 
 @NgModule({
     imports: [
@@ -17,18 +21,19 @@ import { DropdownService, DropdownSelectMultipleValueAccessor, DropdownSelectVal
     ],
     declarations: [
         DropDownDocsComponent,
-        DropDownDirective,
-        OptionDirective,
-        DropdownItemDirective,
-        DropdownSelectionDirective,
-        DropdownTextDirective,
-        DropdownMenuDirective,
-        InputHiddenDirective,
-        InputSearchDirective,
+        DropdownSelectDirective,
+        DropdownDirective,
         DropdownSelectComponent,
         MultiSelectLabelComponent,
         SearchInputComponent,
-        IconDropdownDirective,
+        IconDirective,
+        InputHiddenDirective,
+        InputDirective,
+        ItemDirective,
+        MenuDirective,
+        OptionDirective,
+        SearchInputDirective,
+        TextDirective,
         DropdownSelectValueAccessor,
         DropdownSelectMultipleValueAccessor
     ],

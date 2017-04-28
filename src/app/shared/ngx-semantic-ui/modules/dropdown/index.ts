@@ -1,10 +1,6 @@
-export { DropDownDirective } from "./dropdown.directive";
-export { OptionDirective, IconDropdownDirective, InputHiddenDirective, InputSearchDirective } from "./helper-directives";
-export { DropdownItemDirective } from "./dropdown-item.directive";
-export { DropdownSelectionDirective } from "./dropdown-selection.directive";
-export { DropdownTextDirective } from "./dropdown-text.directive";
-export { DropdownMenuDirective } from "./dropdown-menu.directive";
-export { DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent } from "./helper-components";
+export { IconDirective, InputHiddenDirective, InputDirective, ItemDirective, MenuDirective, OptionDirective, SearchInputDirective, TextDirective } from "./directives";
+export { DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor } from "./value-accessors";
+export { DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent } from "./components";
+export { DropdownSelectDirective } from "./dropdown-select.directive";
+export { DropdownDirective } from "./dropdown.directive";
 export { DropdownService } from "./dropdown.service";
-export { DropdownSelectMultipleValueAccessor } from "./dropdown-select-multiple.value-accessor";
-export { DropdownSelectValueAccessor } from "./dropdown-select.value-accessor";
