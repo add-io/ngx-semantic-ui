@@ -1,11 +1,11 @@
-import { Directive, ComponentRef, OnDestroy, ContentChildren, QueryList, ViewContainerRef, ComponentFactoryResolver, ElementRef, Input, HostBinding, ContentChild, AfterViewInit, Renderer2, HostListener, Output, EventEmitter } from "@angular/core";
+import { Directive, forwardRef, ComponentRef, OnDestroy, ContentChildren, QueryList, ViewContainerRef, ComponentFactoryResolver, ElementRef, Input, HostBinding, ContentChild, AfterViewInit, Renderer2, HostListener, Output, EventEmitter } from "@angular/core";
 
 import { InputHiddenDirective, InputSearchDirective } from "./helper-directives";
 import { DropdownMenuDirective } from "./dropdown-menu.directive";
 import { DropdownTextDirective } from "./dropdown-text.directive";
 import { DropdownItemDirective } from "./dropdown-item.directive";
 import { DropdownService } from "./dropdown.service";
-import { TransitionService, MultiSelectLabelComponent, SearchInputComponent } from "../";
+import { TransitionService, MultiSelectLabelComponent, SearchInputComponent, IconDropdownDirective } from "../";
 
 export interface IDropdownItem {
     value: string;
@@ -26,7 +26,7 @@ export interface ISearchItem {
     keydown?: Function;
 }
 
-@Directive({ selector: ".ui.dropdown.selection,[ngx-select-dropdown]" })
+@Directive({ selector: ".ui.dropdown.selection" })
 export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
 
     private _isOpen: boolean = false;
@@ -35,12 +35,15 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
     private _searchInput: ComponentRef<SearchInputComponent> = null;
     private _transition: TransitionService = null;
 
+    initialValue: any|any[] = null;
     selectedItem: IDropdownItem|IDropdownItem[] = null;
 
     @Input("class") klass: string;
     @Input("multiple") multiple: boolean;
     @Input("search") search: boolean;
+
     @Output("change") onChange: EventEmitter<IDropdownItem|IDropdownItem[]> = new EventEmitter<IDropdownItem>();
+    @Output("blur") onBlur: EventEmitter<void> = new EventEmitter<void>();
 
     @HostBinding("class.active")
     @HostBinding("class.visible")
@@ -48,6 +51,7 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
         return this._isOpen;
     }
 
+    @HostBinding("class.multiple")
     get isMultiple(): boolean {
         return this.klass.indexOf("multiple") > -1 || this.multiple === true;
     }
@@ -57,25 +61,16 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
 
         if (!open) {
             this.text.isFiltered = false;
+            if (this.isSearchable) {
+                this._searchInput.instance.clear();
+            }
+
+            this.onBlur.emit();
         } else {
             this.unFilterList();
         }
-
-        if (!this._isAnimating) {
-            this._isAnimating = true;
-            if (open) {
-                this._renderer.removeClass(this.menu.element.nativeElement, "hidden");
-                this._renderer.addClass(this.menu.element.nativeElement, "visible");
-                this._transition.animate(this.menu.element.nativeElement, "slide down").then(() => {
-                    this._isAnimating = false;
-                });
-            } else {
-                this._transition.animate(this.menu.element.nativeElement, "slide down", 200, "out").then(() => {
-                    this._renderer.removeClass(this.menu.element.nativeElement, "visible");
-                    this._renderer.addClass(this.menu.element.nativeElement, "hidden");
-                    this._isAnimating = false;
-                });
-            }
+        if (!this.menu.isAnimating) {
+            this.menu.triggerAnimation(open);
         }
     }
 
@@ -87,6 +82,8 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
     @ContentChild(DropdownMenuDirective) menu: DropdownMenuDirective;
     @ContentChild(DropdownTextDirective) text: DropdownTextDirective;
     @ContentChild(InputHiddenDirective) input: InputHiddenDirective;
+    @ContentChild(forwardRef(() => IconDropdownDirective)) icon: IconDropdownDirective;
+
 
     constructor(private _service: DropdownService, private _renderer: Renderer2, private _element: ElementRef, private _container: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
         this._transition = new TransitionService(this._renderer);
@@ -107,13 +104,29 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
         event.preventDefault();
     }
 
+    initValue(value: any|any[]) {
+        if (value !== null) {
+            if (Array.isArray(value)) {
+                let items = this.items.filter(x => value.indexOf(x.value) > -1);
+                items.forEach(item => this.selectItem({ value: item.value, label: item.label}));
+            } else {
+                let item = this.items.find(x => x.value == value);
+                if (item !== undefined) {
+                    this.selectItem({ value: item.value, label: item.label});
+                }
+            }
+
+            this.unFilterList();
+        }
+    }
+
     selectItem(item: IDropdownItem) {
         if (this.isMultiple) {
             this.selectedItem = this.selectedItem || [];
             let index = (<IDropdownItem[]>this.selectedItem).findIndex(x => x.value === item.value);
             if (index == -1) {
                 let factory = this._componentFactoryResolver.resolveComponentFactory(MultiSelectLabelComponent);
-                let component = this.text.container.createComponent(factory);
+                let component = this.icon.container.createComponent(factory, 0);
                 component.instance.innerHTML = item.label;
                 component.instance.show = true;
                 component.instance.hideAnimationCallback = () => {
@@ -135,26 +148,19 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
 
             this.selectedItem = item;
             if (item != null) {
-                this.text.element.nativeElement.innerHTML = item.label;
-                this._renderer.removeClass(this.text.element.nativeElement, "default");
+                this.text.label = item.label;
             }
             this.isOpen = false;
         }
     }
 
     ngAfterViewInit() {
-        this._defaultText = this.text.element.nativeElement.innerHTML;
-
         this.items.forEach(x => {
             this._renderer.listen(x.element.nativeElement, "click", this.clickItem.bind(this, x));
         });
 
         if (this.isSearchable) {
             this.buildSearchInput();
-        }
-
-        if (this.isMultiple && this.klass.indexOf("multiple") === -1) {
-            this._renderer.addClass(this._element.nativeElement, "multiple");
         }
     }
 
@@ -167,12 +173,15 @@ export class DropdownSelectionDirective implements AfterViewInit, OnDestroy {
 
     private buildSearchInput() {
         let factory = this._componentFactoryResolver.resolveComponentFactory(SearchInputComponent);
-        this._searchInput = this.text.container.createComponent(factory);
+        this._searchInput = this.icon.container.createComponent(factory);
         this._searchInput.instance.items = this.items;
         this._searchInput.instance.text = this.text;
     }
 
     private clickItem(item: DropdownItemDirective, event: MouseEvent) {
+        if (this.isSearchable) {
+            this._searchInput.instance.clear();
+        }
         this.selectItem({ value: item.value, label: item.label });
         event.stopPropagation();
         event.preventDefault();

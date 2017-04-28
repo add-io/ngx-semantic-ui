@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, ViewContainerRef } from "@angular/core";
+import { Directive, Renderer2, Input, ElementRef, ViewContainerRef } from "@angular/core";
 
 @Directive({ selector: "option" })
 export class OptionDirective {
@@ -9,6 +9,6 @@ export class OptionDirective {
         return this._element.nativeElement.innerHTML;
     }
 
-    constructor(private _element: ElementRef) {
+    constructor(private _element: ElementRef, private _renderer: Renderer2) {
     }
 }

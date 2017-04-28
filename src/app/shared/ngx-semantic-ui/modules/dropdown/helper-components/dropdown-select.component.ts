@@ -5,9 +5,16 @@ import { BehaviorSubject } from "rxjs";
 import { IDropdownItem } from "../dropdown-selection.directive";
 
 @Component({
-    selector: "ngx-dropdown",
+    selector: "ngx-dropdown-select",
     template:
-`<div class="ui dropdown selection" [multiple]='isMultiple' [search]='isSearch' (change)="change($event)" #dropdown>
+`<div class="ui dropdown selection" *ngIf="!isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
+    <i class="dropdown icon"></i>
+    <div class="default text">{{defaultText}}</div>
+    <div class="menu">
+        <div class="item" *ngFor="let item of items" data-value="{{item.value}}">{{item.label}}</div>
+    </div>
+</div>
+<div class="ui dropdown selection multiple" *ngIf="isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
     <div class="menu">
@@ -17,7 +24,6 @@ import { IDropdownItem } from "../dropdown-selection.directive";
 })
 export class DropdownSelectComponent implements AfterViewInit {
 
-    isOpen: boolean = false;
     directive: DropDownDirective = null;
 
     get defaultText(): string {
@@ -48,7 +54,6 @@ export class DropdownSelectComponent implements AfterViewInit {
     @ViewChild("dropdown") dropdown: ElementRef;
 
     constructor(private _renderer: Renderer2) {
-
     }
 
     ngAfterViewInit() {
@@ -64,13 +69,5 @@ export class DropdownSelectComponent implements AfterViewInit {
         if (this.directive !== null) {
             this.directive.onChange(item);
         }
-    }
-
-    open() {
-        this.isOpen = true;
-    }
-
-    close() {
-        this.isOpen = false;
     }
 }

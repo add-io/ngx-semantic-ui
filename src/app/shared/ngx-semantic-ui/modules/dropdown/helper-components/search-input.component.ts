@@ -12,6 +12,13 @@ export class SearchInputComponent {
     public items: QueryList<DropdownItemDirective> = null;
     public text: DropdownTextDirective = null;
 
+    public get value(): string {
+        return this._element.nativeElement.value;
+    }
+    public set value(val: string) {
+        this._element.nativeElement.value = val;
+    }
+
     private get _input(): HTMLInputElement {
         return this._element.nativeElement;
     }
@@ -33,5 +40,9 @@ export class SearchInputComponent {
 
     focus() {
         this._element.nativeElement.focus();
+    }
+
+    clear() {
+        this.value = "";
     }
 }

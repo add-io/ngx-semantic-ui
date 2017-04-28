@@ -4,14 +4,16 @@ import {FormsModule} from "@angular/forms";
 
 import { DropDownDocsRouting } from './dropdown-docs.routing';
 import { DropDownDocsComponent} from './dropdown-docs.component';
+import { NgxSemanticUiModule } from '../../shared/ngx-semantic-ui.module'
 
-import { DropdownService, SearchInputComponent, MultiSelectLabelComponent, DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective } from "../../shared/ngx-semantic-ui"
+import { DropdownService, DropdownSelectMultipleValueAccessor, DropdownSelectValueAccessor, IconDropdownDirective, SearchInputComponent, MultiSelectLabelComponent, DropDownDirective, DropdownSelectComponent, InputSearchDirective, OptionDirective, DropdownItemDirective, DropdownSelectionDirective, DropdownTextDirective, DropdownMenuDirective, InputHiddenDirective } from "../../shared/ngx-semantic-ui"
 
 @NgModule({
     imports: [
         CommonModule,
         DropDownDocsRouting,
-        FormsModule
+        FormsModule,
+        NgxSemanticUiModule
     ],
     declarations: [
         DropDownDocsComponent,
@@ -25,7 +27,10 @@ import { DropdownService, SearchInputComponent, MultiSelectLabelComponent, DropD
         InputSearchDirective,
         DropdownSelectComponent,
         MultiSelectLabelComponent,
-        SearchInputComponent
+        SearchInputComponent,
+        IconDropdownDirective,
+        DropdownSelectValueAccessor,
+        DropdownSelectMultipleValueAccessor
     ],
     providers: [DropdownService],
     entryComponents: [DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent]

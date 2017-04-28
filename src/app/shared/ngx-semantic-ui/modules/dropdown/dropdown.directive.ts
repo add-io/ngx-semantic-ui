@@ -1,7 +1,6 @@
 import { Directive, Optional, Input, ContentChildren, QueryList, AfterViewInit, ViewContainerRef, HostBinding, ComponentFactoryResolver } from "@angular/core";
-import { NgModel } from "@angular/forms";
+import { SelectControlValueAccessor, SelectMultipleControlValueAccessor } from "@angular/forms";
 import { OptionDirective } from "./helper-directives";
-
 import { DropdownSelectComponent } from "./helper-components";
 import { IDropdownItem } from "./dropdown-selection.directive";
 
@@ -12,9 +11,12 @@ export class DropDownDirective implements AfterViewInit {
     @Input("multiple") multiple: string;
 
     @ContentChildren(OptionDirective) options: QueryList<OptionDirective>;
-    private selectedValue: IDropdownItem = null;
 
-    constructor(private _container: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver, @Optional() private _model: NgModel) {
+    constructor(
+        private _container: ViewContainerRef,
+        private _componentFactoryResolver: ComponentFactoryResolver,
+        @Optional() private _single: SelectControlValueAccessor,
+        @Optional() private _multiple: SelectMultipleControlValueAccessor) {
     }
 
     ngAfterViewInit() {
@@ -29,11 +31,20 @@ export class DropDownDirective implements AfterViewInit {
     }
 
     onChange(item: IDropdownItem|IDropdownItem[]) {
-        if (this._model != null) {
+        if (this._multiple != null || this._single != null) {
             if (Array.isArray(item)) {
-                this._model.control.setValue(item.map(x => x.value));
+                // The multi option requires an HTMLCollection of options so we just mimic what is used in angular 2 and pass that in.
+                let items = item.map(x => { return { value: x.value } });
+                this._multiple.onChange({
+                    selectedOptions: {
+                        item: function(index) {
+                            return items[index];
+                        },
+                        length: items.length
+                    }
+                });
             } else {
-                this._model.control.setValue(item.value);
+                this._single.onChange(item.value);
             }
         }
     }
