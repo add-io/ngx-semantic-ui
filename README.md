@@ -33,12 +33,16 @@ export class AppComponent {
 // app.module.ts
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
 import { NgxSemanticUiModule } from "ngx-semantic-ui";
 import { AppComponent } from "./app.component";
 
 @NgModule({
     imports: [
         BrowserModule,
+        FormsModule,
+        HttpModule,
         NgxSemanticUiModule.forRoot()
     ],
     declarations: [
