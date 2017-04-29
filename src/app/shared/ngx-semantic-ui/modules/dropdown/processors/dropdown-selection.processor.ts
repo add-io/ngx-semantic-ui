@@ -9,21 +9,59 @@ import { IDropdownSettings } from "../dropdown-settings.interface";
 
 export class DropdownSelectionProcessor implements IDropdownProcessor {
 
+    /**
+     * Determine if this menu is hidden.
+     */
     private _isHidden: boolean = true;
+    /**
+     * Determine if this menu is animating.
+     */
     private _isAnimating: boolean = false;
-    private _defaultText: string = null;
+    /**
+     * The internal search input that is created if one is not found.
+     */
     private _searchInput: ComponentRef<SearchInputComponent> = null;
+    /**
+     * The transition service that should be used when animating the menu.
+     */
     private _transition: TransitionService = null;
+    /**
+     * The internal selected item.
+     */
     private _selectedItem: ItemDirective|ItemDirective[] = null;
-
+    /**
+     * Getter to determine if the dropdown needs to process as a multi select dropdown.
+     */
     get isMultiple(): boolean {
         return this._class.indexOf("multiple") > -1;
     }
-
+    /**
+     * Getter to determine if this dropdown is searchable.
+     */
     get isSearchable(): boolean {
         return this._class.indexOf("search") > -1 || this._search === true || this._itemSearchInput != null;
     }
 
+    /**
+     * Constructor to build out the elements needed to make this dropdown function properly.
+     *
+     * @param _service The dropdown service that is used to store the processors so that all processor can be controlled at once.
+     * @param _renderer The renderer from angular.
+     * @param _element The elemnt this directive is bound to.
+     * @param _container The container of this directive.
+     * @param _componentFactoryResolver The factory resolver for this directive.
+     * @param _componentFactoryResolver
+     * @param _class The class property to determine if this dropdown is a search or multi select dropdown.
+     * @param _search Internal input that will tell this directive that we need to use the search option.
+     * @param _items Query that will search for all the items in the dropdown for use in searching and selection.
+     * @param _menu Query that will get the menu.
+     * @param _text Query that will gather the text label.
+     * @param _input Query that will gather the hidden input for use in storing selected values.
+     * @param _itemSearchInput Query to get the search input item if on exists.
+     * @param _icon Query that will gather the icon for use when inserting new labels for selection.
+     * @param _onChange Event that will be fired when a change occurs.
+     * @param _onBlur Event that will occur whent he dropdown is closed.
+     */
     constructor(
         private _settings: IDropdownSettings,
         private _service: DropdownService,
@@ -50,6 +88,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         this._service.add(this);
     }
 
+    /**
+     * Helper method that will be called when the event to trigger this element has been called.
+     */
     trigger(event: MouseEvent) {
         if (this._isHidden) {
             this._service.hideAll(this);
@@ -57,6 +98,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Helper method to open this dropdown element.
+     */
     open() {
         this._transition.addClasses(this._element.nativeElement, "visible active");
         this.unFilterList();
@@ -65,6 +109,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         this.focusSearch();
     }
 
+    /**
+     * Helper method to close this dropdown element.
+     */
     close() {
         this._transition.removeClasses(this._element.nativeElement, "visible active");
         this._text.isFiltered = false;
@@ -74,6 +121,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         this._isHidden = true;
     }
 
+    /**
+     * Helper method that will be called if this processor needs to deal with a default value.
+     */
     initilizeValue(value: any|any[]) {
         if (value != null) {
             if (Array.isArray(value)) {
@@ -90,6 +140,11 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Method is meant to deal with selecting an item for the user.
+     *
+     * @param item The item that has been selected by the user.
+     */
     selectItem(item: ItemDirective) {
         if (this._settings.action != "nothing") {
             if (this.isMultiple) {
@@ -136,6 +191,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Workflow callback that will be called after content is initilized.
+     */
     ngAfterContentInit() {
         this._items.forEach(x => {
             this._renderer.listen(x.element.nativeElement, "click", this.clickItem.bind(this, x));
@@ -146,6 +204,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Workflow callback that will be called when the processor is destroyed.
+     */
     ngOnDestroy() {
         this._service.remove(this);
         if (this._searchInput != null) {
@@ -153,6 +214,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Helper function that is used to either build out a search input or bind up the search input found on the DOM.
+     */
     private buildSearchInput() {
         if (this._itemSearchInput == null) {
             let factory = this._componentFactoryResolver.resolveComponentFactory(SearchInputComponent);
@@ -185,6 +249,12 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Method is meant to deal with clicking on items in the menu.
+     *
+     * @param item The Item that is being selected.
+     * @param event The mouse event that triggered this element.
+     */
     private clickItem(item: ItemDirective, event: MouseEvent) {
         this.clearSearch();
         this.selectItem(item);
@@ -192,6 +262,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         event.preventDefault();
     }
 
+    /**
+     * Helper method to clear the search if one exists.
+     */
     private clearSearch() {
         if (this.isSearchable) {
             if (this._itemSearchInput == null) {
@@ -204,6 +277,9 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Method is meant to focus a search on open if one exists.
+     */
     private focusSearch() {
         if (this.isSearchable) {
             if (this._itemSearchInput == null) {
@@ -216,11 +292,16 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         }
     }
 
+    /**
+     * Helper method to filter the list based on the selected items.
+     */
     private unFilterList() {
-        if (!this._settings.allowReselection) {
-            this._items.forEach(x => {
+        this._items.forEach(x => {
+            if (!this._settings.allowReselection) {
                 x.isFiltered = this.isMultiple && Array.isArray(this._selectedItem) ? this._selectedItem.findIndex(y => y.value == x.value) > -1 : false;
-            });
-        }
+            } else {
+                x.isFiltered = false;
+            }
+        });
     }
 }
