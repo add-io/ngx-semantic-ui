@@ -48,14 +48,14 @@ export class ItemDirective {
         this._renderer.listen(this._element.nativeElement, "mouseenter", () => {
             this._hasMouseEntered = true;
             if (this.menu.hidden) {
-                this.menu.toggle();
+                this.menu.open();
             }
         });
         this._renderer.listen(this._element.nativeElement, "mouseleave", () => {
             this._hasMouseEntered = false;
             setTimeout(() => {
                 if (!this._hasMouseEntered && this.menu.visible) {
-                    this.menu.toggle();
+                    this.menu.close();
                 }
             }, 100);
         });

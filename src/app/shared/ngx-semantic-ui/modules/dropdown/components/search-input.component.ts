@@ -10,6 +10,7 @@ export class SearchInputComponent {
 
     public items: QueryList<ItemDirective> = null;
     public text: TextDirective = null;
+    public minCharacters: number = 1;
 
     public get value(): string {
         return this._element.nativeElement.value;
@@ -27,7 +28,7 @@ export class SearchInputComponent {
 
     @HostListener("input", ["$event"])
     onInput(event: Event) {
-        if (this.items !== null) {
+        if (this.items !== null && this.minCharacters <= this._input.value.length) {
             this.items.forEach(x => {
                 x.isFiltered = x.text.toLowerCase().indexOf(this._input.value.toLowerCase()) === -1;
             });

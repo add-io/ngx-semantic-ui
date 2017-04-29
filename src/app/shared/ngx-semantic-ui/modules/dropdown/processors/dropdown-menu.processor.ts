@@ -2,10 +2,11 @@ import { Directive, ContentChild, HostListener, AfterContentInit, OnDestroy } fr
 import { MenuDirective } from "../directives";
 import { DropdownService } from "../dropdown.service";
 import { IDropdownProcessor } from "./dropdown-processor.interface";
+import { IDropdownSettings } from "../dropdown-settings.interface";
 
 export class DropdownMenuProcessor implements IDropdownProcessor {
 
-    constructor(private _service: DropdownService, private _menu: MenuDirective) {
+    constructor(private _settings: IDropdownSettings, private _service: DropdownService, private _menu: MenuDirective) {
     }
 
     initilizeValue(value: any|any[]) {
@@ -35,13 +36,13 @@ export class DropdownMenuProcessor implements IDropdownProcessor {
 
     open() {
         if (this._menu.hidden) {
-            this._menu.open();
+            this._menu.open(this._settings.transition, this._settings.duration);
         }
     }
 
     close() {
         if (!this._menu.hidden) {
-            this._menu.close();
+            this._menu.close(this._settings.transition, this._settings.duration);
         }
     }
 }

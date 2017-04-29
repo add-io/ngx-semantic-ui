@@ -4,6 +4,7 @@ import { TransitionService } from "../../transition";
 import { MultiSelectLabelComponent, SearchInputComponent } from "../components";
 import { IconDirective, SearchInputDirective, InputHiddenDirective, MenuDirective, ItemDirective, TextDirective } from "../directives";
 import { IDropdownProcessor } from "./dropdown-processor.interface";
+import { IDropdownSettings } from "../dropdown-settings.interface";
 
 
 export class DropdownSelectionProcessor implements IDropdownProcessor {
@@ -24,6 +25,7 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
     }
 
     constructor(
+        private _settings: IDropdownSettings,
         private _service: DropdownService,
         private _renderer: Renderer2,
         private _element: ElementRef,
@@ -58,7 +60,7 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
     open() {
         this._transition.addClasses(this._element.nativeElement, "visible active");
         this.unFilterList();
-        this._menu.open();
+        this._menu.open(this._settings.transition, this._settings.duration);
         this._isHidden = false;
         this.focusSearch();
     }
@@ -68,7 +70,7 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
         this._text.isFiltered = false;
         this.clearSearch();
         this._onBlur.emit();
-        this._menu.close();
+        this._menu.close(this._settings.transition, this._settings.duration);
         this._isHidden = true;
     }
 
@@ -112,10 +114,12 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
                     this._onChange.emit(this._selectedItem);
                     this.focusSearch();
                     this.unFilterList();
+                } else if (this._settings.allowReselection) {
+                    this._onChange.emit(this._selectedItem);
                 }
             }
         } else {
-            if (this._selectedItem != item) this._onChange.emit(item);
+            if (this._selectedItem != item || this._settings.allowReselection) this._onChange.emit(item);
 
             this._selectedItem = item;
             if (item != null) {
@@ -148,9 +152,10 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
             this._searchInput = this._icon.container.createComponent(factory);
             this._searchInput.instance.items = this._items;
             this._searchInput.instance.text = this._text;
+            this._searchInput.instance.minCharacters = this._settings.minCharacters;
         } else {
             this._renderer.listen(this._itemSearchInput.input, "input", () => {
-                if (this._items !== null) {
+                if (this._items !== null && this._settings.minCharacters <= this._itemSearchInput.value.length) {
                     this._items.forEach(x => {
                         x.isFiltered = x.text.toLowerCase().indexOf(this._itemSearchInput.value.toLowerCase()) === -1;
                     });

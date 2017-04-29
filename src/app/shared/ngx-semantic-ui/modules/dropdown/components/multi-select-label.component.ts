@@ -26,7 +26,7 @@ export class MultiSelectLabelComponent {
     show: boolean = false;
 
     @HostBinding("class.out")
-    hide: boolean= false;
+    hide: boolean = false;
 
     innerHTML: string;
     hideAnimationCallback: () => void;

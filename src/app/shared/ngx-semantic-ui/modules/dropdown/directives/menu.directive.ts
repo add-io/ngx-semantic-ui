@@ -33,31 +33,29 @@ export class MenuDirective {
         return this._isHidden;
     }
 
-    toggle() {
-        if (this._isHidden) {
-            this.open();
-        } else {
-            this.close();
-        }
-    }
+    open(transition?: string, duration?: number) {
+        transition = transition || "slide down";
+        duration = duration || 400;
 
-    open() {
         if (this._isHidden && !this._isAnimating) {
             this._isAnimating = true;
             this._renderer.setStyle(this._element.nativeElement, "z-index", "10000");
             this._transition.removeClasses(this._element.nativeElement, "hidden");
             this._transition.addClasses(this._element.nativeElement, "visible active");
-            this._transition.animate(this._element.nativeElement, "slide down").then(() => {
+            this._transition.animate(this._element.nativeElement, transition, duration).then(() => {
                 this._isAnimating = false;
             });
             this._isHidden = false;
         }
     }
 
-    close() {
+    close(transition?: string, duration?: number) {
+        transition = transition || "slide down";
+        duration = duration || 400;
+
         if (!this._isHidden && !this._isAnimating) {
             this._isAnimating = true;
-            this._transition.animate(this._element.nativeElement, "slide down", 400, "out").then(() => {
+            this._transition.animate(this._element.nativeElement, transition, duration, "out").then(() => {
                 this._renderer.setStyle(this._element.nativeElement, "z-index", "1");
                 this._transition.removeClasses(this._element.nativeElement, "visible active");
                 this._transition.addClasses(this._element.nativeElement, "hidden");
