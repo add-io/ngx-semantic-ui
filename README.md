@@ -1,28 +1,77 @@
-# Angularattack2017NgxSemanticUi
+# Semantic UI extension into Angular 2
+This project is meant to remove JQuery from Semantic-UI's modules and build it in Angular 2.  The first portion of this project is meant
+to take the existing structures of Semantic-UI where you could copy and paste their examples into your code and the set of directives/components
+in this module will pick them up and create interactivity with them.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+## Warning
+This project is still in heavy development.  So there will be features that have not been implemented.
 
-## Development server
+## Installation
+```bash
+npm install --save ngx-semantic-ui
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Use
+After installation you will need to import the module into your angular project.
+```typescript
+// app.component.ts
+import { Component, ViewContainerRef } from '@angular/core';
 
-## Code scaffolding
+@Component({
+    selector: 'app-root',
+    template:
+`<select class="ui dropdown" [(ngModel)]='selectValue' allowReselection="true">
+    <option value="">{{title}}</option>
+    <option value="1">Male</option>
+    <option value="0">Female</option>
+</select>`
+})
+export class AppComponent {
+    title = 'Placeholder Text';
+}
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+// app.module.ts
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgxSemanticUiModule } from "ngx-semantic-ui";
+import { AppComponent } from "./app.component";
 
-## Build
+@NgModule({
+    imports: [
+        BrowserModule,
+        NgxSemanticUiModule.forRoot()
+    ],
+    declarations: [
+        AppComponent,
+    ]
+})
+export class AppModule {
+}
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+### Modules
+  - Accordion
+  - Checkbox
+  - Dimmer (To be developed)
+  - Dropdown
+  - Embed (To be developed)
+  - Modal
+  - Nag (To be developed)
+  - Popup (In development)
+  - Progress (To be developed)
+  - Rating (To be developed)
+  - Search (To be developed)
+  - Shape (To be developed)
+  - Sidebar (In development)
+  - Sticky (To be developed)
+  - Tab
+  - Transition
 
-## Running unit tests
+### Components
+> Once modules are finished componets will be developed to build out common use cases for each of the modules for quick development.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Services
+> Once modules are finished custom services will be developed to deal with opening dynamic modals in code and displaying messages from code much like toastr messages.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Licence
+MIT License

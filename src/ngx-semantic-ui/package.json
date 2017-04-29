@@ -4,6 +4,10 @@
   "license": "MIT",
   "typings": "./index.d.ts",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/add-io/ngx-semantic-ui.git"
+  },
   "peerDependencies": {
     "@angular/animations": "*",
     "@angular/common": "*",
