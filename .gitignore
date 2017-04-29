@@ -13,7 +13,7 @@ justin/
 /dist
 /tmp
 /out-tsc
-/src/app/shared/ngx-semantic-ui/dist
+/src/ngx-semantic-ui/dist
 
 # dependencies
 /node_modules

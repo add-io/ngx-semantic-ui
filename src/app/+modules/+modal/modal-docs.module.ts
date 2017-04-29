@@ -6,7 +6,7 @@ import { ModalDocsRouting } from './modal-docs.routing';
 import { ModalDocsComponent} from './modal-docs.component';
 import {NgxSemanticUiModule} from '../../shared/ngx-semantic-ui.module'
 
-import { ModalApproveDirective, ModalContextDirective, ModalComponent, ModalDenyDirective, ModalCloseDirective, ModalService } from "../../shared/ngx-semantic-ui"
+import { ModalApproveDirective, ModalContextDirective, ModalComponent, ModalDenyDirective, ModalCloseDirective, ModalService } from "../../../ngx-semantic-ui"
 
 @NgModule({
     imports: [

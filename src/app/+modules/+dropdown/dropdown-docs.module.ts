@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { DropDownDocsRouting } from './dropdown-docs.routing';
 import { DropDownDocsComponent} from './dropdown-docs.component';
 import { NgxSemanticUiModule } from '../../shared/ngx-semantic-ui.module'
-import { DropdownModule } from "../../shared/ngx-semantic-ui/modules/dropdown"
+import { DropdownModule } from "../../../ngx-semantic-ui/modules/dropdown"
 
 @NgModule({
     imports: [
