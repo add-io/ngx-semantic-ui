@@ -15,11 +15,9 @@ export class DropdownDirective implements AfterContentInit, OnDestroy {
     @Input("search") search: boolean;
 
     @Input("allowReselection") allowReselection: boolean = false;
-    @Input("allowAdditions") allowAdditions: boolean = false;
     @Input("action") action: string = "activate";
     @Input("minCharacters") minCharacters: number = 1;
     @Input("match") match: string = "both";
-    @Input("placeholder") placeholder: string|boolean = true;
     @Input("maxSelections") maxSelections: number|boolean = false;
     @Input("labelTransition") labelTransition: string = "horizontal flip";
     @Input("labelDuration") labelDuration: number = 200;
@@ -37,11 +35,9 @@ export class DropdownDirective implements AfterContentInit, OnDestroy {
     get settings(): IDropdownSettings {
         return {
             allowReselection: CommonService.checkBooleanType(this.allowReselection),
-            allowAdditions: CommonService.checkBooleanType(this.allowAdditions),
             action: this.action,
             minCharacters: parseInt(<any>this.minCharacters, 10),
             match: this.match,
-            placeholder: this.placeholder,
             maxSelections: this.maxSelections,
             labelTransition: this.labelTransition,
             labelDuration: parseInt(<any>this.labelDuration, 10),

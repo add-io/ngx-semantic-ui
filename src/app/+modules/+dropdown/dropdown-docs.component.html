@@ -17,7 +17,7 @@
         <h4>Basic Select Dropdown</h4>
         <p>Select statements with the class ".ui.dropdown" will be converted into a dropdown by default.</p>
         <p>Selected Value: {{selectValue == null ? "Nothing Selected" : selectValue}}</p>
-        <select class="ui dropdown" [(ngModel)]='selectValue'>
+        <select class="ui dropdown" [(ngModel)]='selectValue' allowReselection="true">
             <option value="">Gender</option>
             <option value="1">Male</option>
             <option value="0">Female</option>
@@ -28,7 +28,7 @@
         <h4>Search Select Dropdown</h4>
         <p>Dropdowns that have a ".search" class will include the search input and will be able to filter on what is searched.</p>
         <p>Selected Value: {{searchDropdown == null ? "Nothing Selected" : searchDropdown}}</p>
-        <div class="ui fluid search selection dropdown" [(ngModel)]="searchDropdown">
+        <div class="ui fluid search selection dropdown" [(ngModel)]="searchDropdown" minCharacters="2" match="value">
             <input type="hidden" name="country">
             <i class="dropdown icon"></i>
             <div class="default text">Select Country</div>
@@ -283,7 +283,7 @@
         <h4>Multi Select Dropdown</h4>
         <p>Select multiple element is also supported and will be converted into a dropdown as well.</p>
         <div class="ui block"><pre [innerHTML]="stringify(multipleSelectValue)"></pre></div>
-        <select name="skills" multiple="" class="ui fluid dropdown" [(ngModel)]="multipleSelectValue">
+        <select name="skills" multiple="" class="ui fluid dropdown" [(ngModel)]="multipleSelectValue" maxSelections="5">
             <option value="">Skills</option>
             <option value="angular">Angular</option>
             <option value="css">CSS</option>
@@ -310,7 +310,7 @@
         <h4>Search Multi Select Dropdown</h4>
         <p>Multiple select dropdown can also have a search component added to it as well.</p>
         <div class="ui block"><pre [innerHTML]="stringify(multipleSearchSelectValue)"></pre></div>
-        <select class="ui fluid search dropdown" multiple="" [(ngModel)]="multipleSearchSelectValue">
+        <select class="ui fluid search dropdown" multiple="" [(ngModel)]="multipleSearchSelectValue" labelTransition="scale" labelDuration="1000">
             <option value="">State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -682,7 +682,7 @@
     <div class="ui tab" data-tab="dropdown-menus">
         <h4>Basic Dropdown Menu</h4>
         <p>Dropdowns can also be used for menu items.</p>
-        <div class="ui dropdown">
+        <div class="ui dropdown" transition="scale" duration="1000">
             <div class="text">File</div>
             <i class="dropdown icon"></i>
             <div class="menu">
@@ -845,6 +845,95 @@
                     <td>select.ui.dropdown</td>
                     <td>&lt;select class="ui dropdown" &gt;&lt;/select&gt;</td>
                     <td>The basic dropdown that can be added to select inputs.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Settings</h2>
+        <p>Settings that can be added to the elements to change the functionality of the modal.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[allowReselection]</td>
+                    <td>false</td>
+                    <td>Allows for the same item to be reselected from the list.</td>
+                </tr>
+                <tr>
+                    <td>[action]</td>
+                    <td>activate</td>
+                    <td>
+                        <div class="ui vertical divided list">
+                            <div class="item">
+                                <div class="header">activate</div>
+                                <div class="description">Will update the label and save the response.</div>
+                            </div>
+                            <div class="item">
+                                <div class="header">select</div>
+                                <div class="description">Will save the response and leave the label alone.</div>
+                            </div>
+                            <div class="item">
+                                <div class="header">nothing</div>
+                                <div class="description">Nothing will be done if an item is selected.</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>[minCharacters]</td>
+                    <td>1</td>
+                    <td>The minimum amount of characters that should be typed before the search will start filtering.</td>
+                </tr>
+                <tr>
+                    <td>[match]</td>
+                    <td>both</td>
+                    <td>
+                        <div class="ui vertical divided list">
+                            <div class="item">
+                                <div class="header">both</div>
+                                <div class="description">Will search on both value and text of the options.</div>
+                            </div>
+                            <div class="item">
+                                <div class="header">value</div>
+                                <div class="description">Will only search on the value of the options.</div>
+                            </div>
+                            <div class="item">
+                                <div class="header">text</div>
+                                <div class="description">Will only search on the text of the options.</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>[maxSelections]</td>
+                    <td>false</td>
+                    <td>The maximum number of selections that can be made for a multi select dropdown.</td>
+                </tr>
+                <tr>
+                    <td>[labelTransition]</td>
+                    <td>horizontal flip</td>
+                    <td>The transition that should be used for the multi labels.</td>
+                </tr>
+                <tr>
+                    <td>[labelDuration]</td>
+                    <td>200</td>
+                    <td>The transition duration that should be used when animating the transition for the multi labels.</td>
+                </tr>
+                <tr>
+                    <td>[transition]</td>
+                    <td>slide down</td>
+                    <td>The transition that should be made when opening the dropdown menu.</td>
+                </tr>
+                <tr>
+                    <td>[duration]</td>
+                    <td>200</td>
+                    <td>The duration that should be used on the animation for the dropdown menu.</td>
                 </tr>
             </tbody>
         </table>

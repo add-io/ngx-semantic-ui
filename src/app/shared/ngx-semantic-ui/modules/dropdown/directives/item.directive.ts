@@ -6,6 +6,9 @@ import { InputDirective } from "./input.directive";
 @Directive({ selector: ".item", host: { "[class.filtered]": "isFiltered" } })
 export class ItemDirective {
 
+    private transition: string = "slide down";
+    private duration: number = 400;
+
     @Input("value") value: string;
     @Input("class") klass: string;
 
@@ -39,23 +42,26 @@ export class ItemDirective {
     constructor(private _element: ElementRef, private _renderer: Renderer2) {
     }
 
-    initializeItemMenu() {
+    initializeItemMenu(transition: string, duration: number) {
+        this.transition = transition;
+        this.duration = duration;
+
         this.bindItem();
-        this.menu.initializeMenu();
+        this.menu.initializeMenu(transition, duration);
     }
 
     private bindItem() {
         this._renderer.listen(this._element.nativeElement, "mouseenter", () => {
             this._hasMouseEntered = true;
             if (this.menu.hidden) {
-                this.menu.open();
+                this.menu.open(this.transition, this.duration);
             }
         });
         this._renderer.listen(this._element.nativeElement, "mouseleave", () => {
             this._hasMouseEntered = false;
             setTimeout(() => {
                 if (!this._hasMouseEntered && this.menu.visible) {
-                    this.menu.close();
+                    this.menu.close(this.transition, this.duration);
                 }
             }, 100);
         });

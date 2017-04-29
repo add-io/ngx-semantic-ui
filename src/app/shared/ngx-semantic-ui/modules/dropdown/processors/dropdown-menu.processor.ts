@@ -15,7 +15,7 @@ export class DropdownMenuProcessor implements IDropdownProcessor {
     ngAfterContentInit() {
         if (this._menu !== undefined) {
             this._service.add(this);
-            this._menu.initializeMenu();
+            this._menu.initializeMenu(this._settings.transition, this._settings.duration);
         }
     }
 

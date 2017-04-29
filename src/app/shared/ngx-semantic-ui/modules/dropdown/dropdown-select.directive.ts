@@ -9,6 +9,16 @@ export class DropdownSelectDirective implements AfterViewInit {
     @Input("class") klass: string;
     @Input("multiple") multiple: string;
 
+    @Input("allowReselection") allowReselection: boolean = false;
+    @Input("action") action: string = "activate";
+    @Input("minCharacters") minCharacters: number = 1;
+    @Input("match") match: string = "both";
+    @Input("maxSelections") maxSelections: number|boolean = false;
+    @Input("labelTransition") labelTransition: string = "horizontal flip";
+    @Input("labelDuration") labelDuration: number = 200;
+    @Input("transition") transition: string = "slide down";
+    @Input("duration") duration: number = 200;
+
     @ContentChildren(OptionDirective) options: QueryList<OptionDirective>;
 
     constructor(
@@ -22,6 +32,16 @@ export class DropdownSelectDirective implements AfterViewInit {
         let factory = this._componentFactoryResolver.resolveComponentFactory(DropdownSelectComponent);
         let ref = this._container.createComponent(factory);
         ref.instance.directive = this;
+        ref.instance.allowReselection = this.allowReselection;
+        ref.instance.action = this.action;
+        ref.instance.minCharacters = this.minCharacters;
+        ref.instance.match = this.match;
+        ref.instance.maxSelections = this.maxSelections;
+        ref.instance.labelTransition = this.labelTransition;
+        ref.instance.labelDuration = this.labelDuration;
+        ref.instance.transition = this.transition;
+        ref.instance.duration = this.duration;
+
     }
 
     @HostBinding("style.display")

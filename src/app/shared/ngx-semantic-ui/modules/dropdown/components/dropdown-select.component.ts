@@ -7,7 +7,7 @@ import { ItemDirective } from "../directives";
 @Component({
     selector: "ngx-dropdown-select",
     template:
-`<div class="ui dropdown selection" *ngIf="!isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
+`<div class="ui dropdown selection" *ngIf="!isMultiple" [allowReselection]="allowReselection" [action]="action" [minCharacters]="minCharacters" [match]="match" [maxSelections]="maxSelections" [labelTransition]="labelTransition" [labelDuration]="labelDuration" [transition]="transition" [duration]="duration" [search]='isSearch' (change)="change($event)" #dropdown>
     <input type="hidden" />
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
@@ -15,7 +15,7 @@ import { ItemDirective } from "../directives";
         <div class="item" *ngFor="let item of items" data-value="{{item.value}}">{{item.label}}</div>
     </div>
 </div>
-<div class="ui dropdown selection multiple" *ngIf="isMultiple" [search]='isSearch' (change)="change($event)" #dropdown>
+<div class="ui dropdown selection multiple" *ngIf="isMultiple" [allowReselection]="allowReselection" [action]="action" [minCharacters]="minCharacters" [match]="match" [maxSelections]="maxSelections" [labelTransition]="labelTransition" [labelDuration]="labelDuration" [transition]="transition" [duration]="duration" [search]='isSearch' (change)="change($event)" #dropdown>
     <input type="hidden" />
     <i class="dropdown icon"></i>
     <div class="default text">{{defaultText}}</div>
@@ -27,6 +27,16 @@ import { ItemDirective } from "../directives";
 export class DropdownSelectComponent implements AfterViewInit {
 
     directive: DropdownSelectDirective = null;
+
+    allowReselection: boolean = false;
+    action: string = "activate";
+    minCharacters: number = 1;
+    match: string = "both";
+    maxSelections: number|boolean = false;
+    labelTransition: string = "horizontal flip";
+    labelDuration: number = 200;
+    transition: string = "slide down";
+    duration: number = 200;
 
     get defaultText(): string {
         if (this.directive !== null) {

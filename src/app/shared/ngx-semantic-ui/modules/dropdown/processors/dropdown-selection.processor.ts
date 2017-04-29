@@ -91,41 +91,48 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
     }
 
     selectItem(item: ItemDirective) {
-        if (this.isMultiple) {
-            this._selectedItem = this._selectedItem || [];
-            if (Array.isArray(this._selectedItem)) {
-                let index = this._selectedItem.findIndex(x => x.value === item.value);
-                if (index == -1) {
-                    let factory = this._componentFactoryResolver.resolveComponentFactory(MultiSelectLabelComponent);
-                    let component = this._icon.container.createComponent(factory, 0);
-                    component.instance.innerHTML = item.label;
-                    component.instance.show = true;
-                    component.instance.hideAnimationCallback = () => {
-                        component.destroy();
-                        if (Array.isArray(this._selectedItem)) {
-                            this._selectedItem.splice(this._selectedItem.indexOf(item), 1);
-                            this._onChange.emit(this._selectedItem);
-                            this.focusSearch();
-                            this.unFilterList();
-                        }
-                    };
+        if (this._settings.action != "nothing") {
+            if (this.isMultiple) {
+                this._selectedItem = this._selectedItem || [];
+                if (Array.isArray(this._selectedItem) && (this._settings.maxSelections === false || this._selectedItem.length < this._settings.maxSelections)) {
+                    let index = this._selectedItem.findIndex(x => x.value === item.value);
+                    if (index == -1) {
+                        let factory = this._componentFactoryResolver.resolveComponentFactory(MultiSelectLabelComponent);
+                        let component = this._icon.container.createComponent(factory, 0);
+                        component.instance.innerHTML = item.label;
+                        component.instance.transition = this._settings.labelTransition;
+                        component.instance.duration = this._settings.labelDuration;
+                        component.instance.hideAnimationCallback = () => {
+                            component.destroy();
+                            if (Array.isArray(this._selectedItem)) {
+                                this._selectedItem.splice(this._selectedItem.indexOf(item), 1);
+                                this._onChange.emit(this._selectedItem);
+                                this.focusSearch();
+                                this.unFilterList();
+                            }
+                        };
 
-                    this._selectedItem.push(item);
-                    this._onChange.emit(this._selectedItem);
-                    this.focusSearch();
-                    this.unFilterList();
-                } else if (this._settings.allowReselection) {
-                    this._onChange.emit(this._selectedItem);
+                        component.instance.show();
+
+                        this._selectedItem.push(item);
+                        this._onChange.emit(this._selectedItem);
+                        this.focusSearch();
+                        this.unFilterList();
+                    } else if (this._settings.allowReselection) {
+                        this._onChange.emit(this._selectedItem);
+                    }
                 }
+            } else {
+                if (this._selectedItem != item || this._settings.allowReselection) this._onChange.emit(item);
+
+                this._selectedItem = item;
+                if (item != null && this._settings.action == "activate") {
+                    this._text.label = item.label;
+                }
+                this.close();
             }
         } else {
-            if (this._selectedItem != item || this._settings.allowReselection) this._onChange.emit(item);
 
-            this._selectedItem = item;
-            if (item != null) {
-                this._text.label = item.label;
-            }
-            this.close();
         }
     }
 
@@ -153,12 +160,19 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
             this._searchInput.instance.items = this._items;
             this._searchInput.instance.text = this._text;
             this._searchInput.instance.minCharacters = this._settings.minCharacters;
+            this._searchInput.instance.match = this._settings.match;
+            this._searchInput.instance.unfilterList = this.unFilterList.bind(this);
         } else {
             this._renderer.listen(this._itemSearchInput.input, "input", () => {
                 if (this._items !== null && this._settings.minCharacters <= this._itemSearchInput.value.length) {
                     this._items.forEach(x => {
-                        x.isFiltered = x.text.toLowerCase().indexOf(this._itemSearchInput.value.toLowerCase()) === -1;
+                        x.isFiltered =
+                            (this._settings.match == "both" && (x.text.toLowerCase().indexOf(this._itemSearchInput.value.toLowerCase()) === -1 || x.value.toLowerCase().indexOf(this._itemSearchInput.value.toLocaleLowerCase()) === -1))
+                            || (this._settings.match == "value" && (x.value.toLowerCase().indexOf(this._itemSearchInput.value.toLowerCase()) === -1))
+                            || (this._settings.match == "text" && (x.text.toLowerCase().indexOf(this._itemSearchInput.value.toLowerCase()) === -1));
                     });
+                } else {
+                    this.unFilterList();
                 }
                 if (this._text !== null) {
                     this._text.isFiltered = this._itemSearchInput.value.length > 0;
@@ -203,8 +217,10 @@ export class DropdownSelectionProcessor implements IDropdownProcessor {
     }
 
     private unFilterList() {
-        this._items.forEach(x => {
-            x.isFiltered = this.isMultiple && Array.isArray(this._selectedItem) ? this._selectedItem.findIndex(y => y.value == x.value) > -1 : false;
-        });
+        if (!this._settings.allowReselection) {
+            this._items.forEach(x => {
+                x.isFiltered = this.isMultiple && Array.isArray(this._selectedItem) ? this._selectedItem.findIndex(y => y.value == x.value) > -1 : false;
+            });
+        }
     }
 }

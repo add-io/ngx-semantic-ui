@@ -18,10 +18,10 @@ export class MenuDirective {
         this._transition = new TransitionService(this._renderer);
     }
 
-    initializeMenu() {
+    initializeMenu(transition: string, duration: number) {
         let items = this.items.filter(x => x.hasMenu);
         for(let i = 0; i < items.length; ++i) {
-            items[i].initializeItemMenu();
+            items[i].initializeItemMenu(transition, duration);
         }
     }
 

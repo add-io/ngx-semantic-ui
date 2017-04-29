@@ -1,56 +1,39 @@
-import { Component, HostBinding, HostListener } from "@angular/core";
+import { Component, HostBinding, HostListener, ElementRef, Renderer2 } from "@angular/core";
+import { TransitionService } from "../../transition";
 
 @Component({
     selector: "a.ui.label.visible.ngx-multi-select-label",
-    template: "<span [innerHTML]='innerHTML'></span><i class='delete icon' (click)='hideItem()'></i>"
+    template: "<span [innerHTML]='innerHTML'></span><i class='delete icon' (click)='remove()'></i>"
 })
 export class MultiSelectLabelComponent {
 
-    @HostBinding("style.animation-duration")
-    get animationDuration(): string {
-        if (this.hide) return "200ms";
-        return "400ms";
-    }
+    private _transition: TransitionService;
 
-    @HostBinding("class.transition")
-    get transition(): boolean {
-        return true;
-    }
-
-    @HostBinding("class.scale")
-    get scale(): boolean {
-        return this.show || this.hide;
-    }
-
-    @HostBinding("class.in")
-    show: boolean = false;
-
-    @HostBinding("class.out")
-    hide: boolean = false;
+    public transition: string = "horizontal flip";
+    public duration: number = 200;
 
     innerHTML: string;
     hideAnimationCallback: () => void;
     showAnimationCallback: () => void;
 
-    hideItem() {
-        this.hide = true;
+    constructor(private _element: ElementRef, private _renderer: Renderer2) {
+        this._transition = new TransitionService(this._renderer);
     }
 
-    @HostListener("animationend", ["$event"])
-    @HostListener("oAnimationEnd", ["$event"])
-    @HostListener("mozAnimationEnd", ["$event"])
-    @HostListener("webkitAnimationEnd", ["$event"])
-    onAnimationEnd(event: AnimationEvent) {
-        if (event.animationName === "scaleIn") {
-            this.show = false;
+    remove() {
+        this._transition.animate(this._element.nativeElement, this.transition, this.duration, "out").then(() => {
+            if (this.hideAnimationCallback !== undefined) {
+                this.hideAnimationCallback();
+
+            }
+        })
+    }
+
+    show() {
+        this._transition.animate(this._element.nativeElement, this.transition, this.duration).then(() => {
             if (this.showAnimationCallback !== undefined) {
                 this.showAnimationCallback();
             }
-        } else if (event.animationName === "scaleOut") {
-            this.hide = false;
-            if (this.hideAnimationCallback !== undefined) {
-                this.hideAnimationCallback();
-            }
-        }
+        });
     }
 }
