@@ -4,3 +4,6 @@ export { DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponen
 export { DropdownSelectDirective } from "./dropdown-select.directive";
 export { DropdownDirective } from "./dropdown.directive";
 export { DropdownService } from "./dropdown.service";
+export { IDropdownSettings } from "./dropdown-settings.interface";
+export { DropdownConfig } from "./dropdown.config";
+export { DropdownModule } from "./dropdown.module";

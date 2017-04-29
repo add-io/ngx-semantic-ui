@@ -1,26 +1,44 @@
 export {
+    // #region Tab Includes
     TabDirective, TabTriggerDirective, TabContextDirective, TabService,
+    // #endregion
 
     // #region Dropdown Includes
-    DropdownSelectDirective, DropdownDirective, DropdownService, InputDirective, SearchInputDirective,
-    DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent, IconDirective, InputHiddenDirective,
+    DropdownSelectDirective, DropdownDirective, DropdownService, InputDirective, SearchInputDirective, IDropdownSettings,
+    DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent, IconDirective, InputHiddenDirective, DropdownConfig,
     ItemDirective, MenuDirective, OptionDirective, TextDirective, DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor,
     // #endregion
+
+    // #region Checkbox Includes
     CheckboxDirective, RadioCheckboxDirective,
+    // #endregion
+
+    // #region Accordion Includes
     AccordionContentComponent, AccordionDirective, AccordionTitleDirective,
+    // #endregion
+
+    // #region Popup Includes
     PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective,
+    // #endregion
+
+    // #region Modal Includes
     ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDenyDirective, ModalCloseDirective, ModalService,
+    // #endregion
+
+    // #region Transition Includes
     TransitionService
+    // #endregion
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { AccordionModule, CheckboxModule, ModalModule, TabModule } from "./modules";
+import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule } from "./modules";
 
 const MODULES = [
     AccordionModule,
     CheckboxModule,
     ModalModule,
-    TabModule
+    TabModule,
+    DropdownModule
 ];
 
 @NgModule({
@@ -28,7 +46,8 @@ const MODULES = [
         AccordionModule.forRoot(),
         CheckboxModule.forRoot(),
         ModalModule.forRoot(),
-        TabModule.forRoot()
+        TabModule.forRoot(),
+        DropdownModule.forRoot()
     ],
     exports: MODULES
 })

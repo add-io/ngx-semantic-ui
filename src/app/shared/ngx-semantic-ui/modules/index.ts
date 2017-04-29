@@ -16,7 +16,10 @@ export {
     SearchInputDirective,
     TextDirective,
     DropdownSelectValueAccessor,
-    DropdownSelectMultipleValueAccessor
+    DropdownSelectMultipleValueAccessor,
+    DropdownConfig,
+    DropdownModule,
+    IDropdownSettings
 } from "./dropdown";
 export { AccordionDirective, AccordionContentComponent, AccordionTitleDirective, AccordionConfig, AccordionModule } from "./accordion";
 export { PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective } from './popup';
