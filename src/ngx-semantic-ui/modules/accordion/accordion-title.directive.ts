@@ -1,54 +1,57 @@
-import { Input, Component, Directive, Optional, ElementRef, HostListener, Renderer } from "@angular/core";
+import { Input, Component, Directive, Optional, ElementRef, HostListener, Renderer, AfterContentInit } from "@angular/core";
 
 import { AccordionDirective } from "./accordion.directive"
 
 @Directive({ selector: ".title" })
-export class AccordionTitleDirective {
- private cancelEvent: Function;
+export class AccordionTitleDirective implements AfterContentInit {
+    private cancelEvent: Function;
 
-  @Input("class")
-  set setActive(klass: string) {
-    this._isActive = klass.indexOf("active") > -1;
-  }
+    @Input("class")
+    set setActive(klass: string) {
+        this._isActive = klass.indexOf("active") > -1;
+    }
 
-  private _isActive: boolean;
+    private _isActive: boolean;
 
-  get isActive(): boolean {
-    return this._isActive;
-  }
+    get active(): boolean {
+        return this._isActive;
+    }
 
- constructor(@Optional() private _accordion: AccordionDirective, private _renderer: Renderer, private _element: ElementRef) {
-   if (this._accordion != undefined) {
-     this._accordion.addTitle(this);
-   }
- }
+    constructor(@Optional() private _accordion: AccordionDirective, private _renderer: Renderer, private _element: ElementRef) {
+    }
 
- showEvent(event) {
-   if (this._accordion != undefined) {
-     this._accordion.openPanel(this);
-   }
- }
+    ngAfterContentInit() {
+        if (this._accordion != undefined) {
+            this._accordion.addTitle(this);
+        }
+    }
 
- toggleEvent(event) {
-   if(this._accordion != undefined ) {
-     this._accordion.togglePanel(this, this._isActive);
-   }
- }
+    showEvent(event) {
+        if (this._accordion != undefined) {
+            this._accordion.openPanel(this);
+        }
+    }
 
- addShowEvent(event: string) {
-   if (this.cancelEvent != undefined) {
-     this.cancelEvent();
-   }
-   this.cancelEvent = this._renderer.listen(this._element.nativeElement, event, this.toggleEvent.bind(this));
- }
+    toggleEvent(event) {
+        if(this._accordion != undefined ) {
+            this._accordion.togglePanel(this);
+        }
+    }
 
- closeContent() {
-   this._renderer.setElementClass(this._element.nativeElement, "active", false);
-   this._isActive = false;
- }
+    addShowEvent(event: string) {
+        if (this.cancelEvent != undefined) {
+            this.cancelEvent();
+        }
+        this.cancelEvent = this._renderer.listen(this._element.nativeElement, event, this.toggleEvent.bind(this));
+    }
 
- showContent() {
-   this._renderer.setElementClass(this._element.nativeElement, "active", true);
-   this._isActive = true;
- }
+    closeContent() {
+        this._renderer.setElementClass(this._element.nativeElement, "active", false);
+        this._isActive = false;
+    }
+
+    showContent() {
+        this._renderer.setElementClass(this._element.nativeElement, "active", true);
+        this._isActive = true;
+    }
 }

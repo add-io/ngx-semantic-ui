@@ -1,51 +1,33 @@
-import { Input, Component, Directive, Optional, ElementRef, OnInit, HostListener, Renderer, HostBinding } from "@angular/core";
-import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
-
+import { Input, Directive, Optional, ElementRef, OnInit, HostListener, Renderer2, HostBinding, AfterContentInit } from "@angular/core";
+import { TransitionService } from "../transition";
 import { AccordionDirective } from "./accordion.directive";
 
-@Component({
-  selector: ".content",
-  template: "<ng-content></ng-content>",
-  animations: [
-      trigger("fadeMessage", [
-            state("visible", style({ opacity: 1.0 })),
-            state("fade", style({ opacity: 0.0 })),
-            transition("visible => fade", animate(300, keyframes([ style({opacity: 1}), style({opacity: 0})]))),
-            transition("fade => visible", animate(300, keyframes([ style({opacity: 0}), style({opacity: 1})])))
-      ])
-  ]
-})
-export class AccordionContentComponent implements OnInit {
+@Directive({ selector: ".content" })
+export class AccordionContentComponent implements AfterContentInit {
 
-  @HostBinding("@fadeMessage")
-   state: string = "fade";
+    private _transition: TransitionService;
 
-  @Input("class") klass: string;
-
-  get isActive(): boolean {
-    return this.klass.indexOf("active") > -1;
-  }
-
-  constructor(@Optional() private _accordion: AccordionDirective, private _renderer: Renderer, private _element: ElementRef) {
-    if (this._accordion != undefined) {
-      this._accordion.addContent(this);
+    constructor(@Optional() private _accordion: AccordionDirective, private _renderer: Renderer2, private _element: ElementRef) {
+        if (this._accordion != undefined) {
+            this._transition = new TransitionService(this._renderer);
+        }
     }
-  }
 
-  ngOnInit() {
-    if (this.isActive) {
-      this.state = "visible";
+    ngAfterContentInit() {
+        if (this._accordion != undefined) {
+            this._accordion.addContent(this);
+        }
     }
-  }
 
-  closeContent() {
-    this._renderer.setElementClass(this._element.nativeElement, "active", false);
-    this.state = "fade";
-  }
+    closeContent() {
+        // TODO: Need to get easing working before doing this.
+        // this._transition.animate(this._element.nativeElement, "slide down", 400, "out").then(() => {
+            this._renderer.removeClass(this._element.nativeElement, "active");
+        // });
+    }
 
-  showContent() {
-    this._renderer.setElementClass(this._element.nativeElement, "active", true);
-    this.state = "visible";
-  }
-
+    showContent() {
+        this._renderer.addClass(this._element.nativeElement, "active");
+        // this._transition.animate(this._element.nativeElement, "slide down");
+    }
 }

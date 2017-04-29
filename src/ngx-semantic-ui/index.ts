@@ -31,8 +31,6 @@ export {
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
 import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule } from "./modules";
 
 const MODULES = [
@@ -45,8 +43,6 @@ const MODULES = [
 
 @NgModule({
     imports: [
-        FormsModule,
-        RouterModule.forRoot([]),
         AccordionModule.forRoot(),
         CheckboxModule.forRoot(),
         ModalModule.forRoot(),
