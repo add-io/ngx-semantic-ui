@@ -25,3 +25,4 @@ export { AccordionDirective, AccordionContentComponent, AccordionTitleDirective,
 export { PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective } from './popup';
 export { ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDenyDirective, ModalCloseDirective, ModalService, ModalConfig, ModalModule } from "./modal";
 export { TransitionService, TransitionBaseDirective } from "./transition";
+export { StickyContextDirective, StickyDirective } from "./sticky";

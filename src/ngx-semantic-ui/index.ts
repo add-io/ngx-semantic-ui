@@ -25,6 +25,10 @@ export {
     ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDenyDirective, ModalCloseDirective, ModalService,
     // #endregion
 
+    // #region Sticky Includes
+    StickyContextDirective, StickyDirective,
+    // #endregion
+
     // #region Transition Includes
     TransitionService
     // #endregion

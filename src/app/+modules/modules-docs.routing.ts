@@ -24,7 +24,7 @@ export const routes: Routes = [
         path: 'tab',
         loadChildren: 'app/+modules/+tab/tab-docs.module#TabDocsModule',
         data: {pageTitle: 'Tab'}
-    },    
+    },
     {
         path: 'dropdown',
         loadChildren: 'app/+modules/+dropdown/dropdown-docs.module#DropDownDocsModule',
@@ -34,6 +34,11 @@ export const routes: Routes = [
         path: 'modal',
         loadChildren: 'app/+modules/+modal/modal-docs.module#ModalDocsModule',
         data: {pageTitle: 'Modal'}
+    },
+    {
+        path: 'sticky',
+        loadChildren: 'app/+modules/+sticky/sticky-docs.module#StickyDocsModule',
+        data: {pageTitle: 'Sticky'}
     },
     {
         path: 'sidebar',
