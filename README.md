@@ -66,7 +66,7 @@ export class AppModule { }
   - Search (To be developed)
   - Shape (To be developed)
   - Sidebar (In development)
-  - Sticky (To be developed)
+  - Sticky
   - Tab
   - Transition
 

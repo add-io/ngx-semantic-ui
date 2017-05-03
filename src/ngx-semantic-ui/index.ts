@@ -7,6 +7,7 @@ export {
     DropdownSelectDirective, DropdownDirective, DropdownService, InputDirective, SearchInputDirective, IDropdownSettings,
     DropdownSelectComponent, MultiSelectLabelComponent, SearchInputComponent, IconDirective, InputHiddenDirective, DropdownConfig,
     ItemDirective, MenuDirective, OptionDirective, TextDirective, DropdownSelectValueAccessor, DropdownSelectMultipleValueAccessor,
+    DropdownMenuProcessor, IDropdownProcessor, DropdownSelectionProcessor,
     // #endregion
 
     // #region Checkbox Includes
@@ -26,7 +27,7 @@ export {
     // #endregion
 
     // #region Sticky Includes
-    StickyContextDirective, StickyDirective,
+    StickyContextDirective, StickyDirective, StickyConfig,
     // #endregion
 
     // #region Transition Includes
@@ -35,15 +36,18 @@ export {
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule } from "./modules";
+import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule } from "./modules";
 
-const MODULES = [
-    AccordionModule,
-    CheckboxModule,
-    ModalModule,
-    TabModule,
-    DropdownModule
-];
+export function Modules() {
+    return [
+        AccordionModule,
+        CheckboxModule,
+        ModalModule,
+        TabModule,
+        DropdownModule,
+        StickyModule
+    ];
+};
 
 @NgModule({
     imports: [
@@ -51,13 +55,14 @@ const MODULES = [
         CheckboxModule.forRoot(),
         ModalModule.forRoot(),
         TabModule.forRoot(),
-        DropdownModule.forRoot()
+        DropdownModule.forRoot(),
+        StickyModule.forRoot()
     ],
-    exports: MODULES
+    exports: Modules()
 })
 export class NgxRootModule { }
 
-@NgModule({ exports: MODULES })
+@NgModule({ exports: Modules() })
 export class NgxSemanticUiModule {
     public static forRoot(): ModuleWithProviders { return { ngModule: NgxRootModule }; }
 }
