@@ -7,6 +7,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:module": "gulp build",
+    "publish:module": "cd src/ngx-semantic-ui/dist && npm publish",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
