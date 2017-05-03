@@ -30,6 +30,10 @@ export {
     StickyContextDirective, StickyDirective, StickyConfig,
     // #endregion
 
+    // #region Rating Includes
+    RatingComponent, RatingValueAccessor,
+    // #endregion
+
     // #region Transition Includes
     TransitionService
     // #endregion
@@ -64,5 +68,5 @@ export class NgxRootModule { }
 
 @NgModule({ exports: Modules() })
 export class NgxSemanticUiModule {
-    public static forRoot(): ModuleWithProviders { return { ngModule: NgxRootModule }; }
+    static forRoot(): ModuleWithProviders { return { ngModule: NgxRootModule }; }
 }

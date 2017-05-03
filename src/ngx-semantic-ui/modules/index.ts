@@ -29,3 +29,4 @@ export { PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective }
 export { ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDenyDirective, ModalCloseDirective, ModalService, ModalConfig, ModalModule } from "./modal";
 export { TransitionService, TransitionBaseDirective } from "./transition";
 export { StickyContextDirective, StickyDirective, StickyConfig, StickyModule } from "./sticky";
+export { RatingComponent, RatingValueAccessor } from "./rating";

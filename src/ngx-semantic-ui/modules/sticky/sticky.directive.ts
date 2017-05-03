@@ -68,7 +68,7 @@ export class StickyDirective implements AfterContentInit, OnDestroy {
      * Workflow method to deal with destroying this directive, and clean up some of the events that were bound to it.
      */
     ngOnDestroy() {
-        for(let i = 0; this._scrollFunctions.length; ++i) {
+        for(let i = 0; i < this._scrollFunctions.length; ++i) {
             this._scrollFunctions[i]();
         }
     }

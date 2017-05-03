@@ -41,6 +41,11 @@ export const routes: Routes = [
         data: {pageTitle: 'Sticky'}
     },
     {
+        path: 'rating',
+        loadChildren: 'app/+modules/+rating/rating-docs.module#RatingDocsModule',
+        data: {pageTitle: 'Rating'}
+    },
+    {
         path: 'sidebar',
         loadChildren: 'app/+modules/+sidebar/sidebar-docs.module#SidebarDocsModule',
         data: {pageTitle: 'Sidebar'}
