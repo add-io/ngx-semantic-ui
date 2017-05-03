@@ -19,10 +19,13 @@ export {
     DropdownSelectMultipleValueAccessor,
     DropdownConfig,
     DropdownModule,
-    IDropdownSettings
+    IDropdownSettings,
+    DropdownMenuProcessor,
+    DropdownSelectionProcessor,
+    IDropdownProcessor
 } from "./dropdown";
 export { AccordionDirective, AccordionContentComponent, AccordionTitleDirective, AccordionConfig, AccordionModule } from "./accordion";
 export { PopupDirective, PopupTriggerDirective, PopupService, TooltipDirective } from './popup';
 export { ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDenyDirective, ModalCloseDirective, ModalService, ModalConfig, ModalModule } from "./modal";
 export { TransitionService, TransitionBaseDirective } from "./transition";
-export { StickyContextDirective, StickyDirective } from "./sticky";
+export { StickyContextDirective, StickyDirective, StickyConfig, StickyModule } from "./sticky";
