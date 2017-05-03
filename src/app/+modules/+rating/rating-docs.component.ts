@@ -10,6 +10,8 @@ import {Component, OnInit} from '@angular/core';
 export class RatingDocsComponent implements OnInit {
 
     basicRating: number = 1;
+    starRating: number = 0;
+    heartRating: number = 2;
 
     constructor() {
     }

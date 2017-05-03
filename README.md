@@ -62,7 +62,7 @@ export class AppModule { }
   - Nag (To be developed)
   - Popup (In development)
   - Progress (To be developed)
-  - Rating (To be developed)
+  - Rating
   - Search (To be developed)
   - Shape (To be developed)
   - Sidebar (In development)
