@@ -34,6 +34,10 @@ export {
     RatingComponent, RatingValueAccessor,
     // #endregion
 
+    // #region Progress Includes
+    ProgressDirective, BarComponent, BarProgressLabelComponent,
+    // #endregion
+
     // #region Transition Includes
     TransitionService
     // #endregion

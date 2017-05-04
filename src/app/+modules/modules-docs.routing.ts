@@ -46,6 +46,11 @@ export const routes: Routes = [
         data: {pageTitle: 'Rating'}
     },
     {
+        path: 'progress',
+        loadChildren: 'app/+modules/+progress/progress-docs.module#ProgressDocsModule',
+        data: {pageTitle: 'Progress'}
+    },
+    {
         path: 'sidebar',
         loadChildren: 'app/+modules/+sidebar/sidebar-docs.module#SidebarDocsModule',
         data: {pageTitle: 'Sidebar'}

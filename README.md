@@ -61,7 +61,7 @@ export class AppModule { }
   - Modal
   - Nag (To be developed)
   - Popup (In development)
-  - Progress (To be developed)
+  - Progress
   - Rating
   - Search (To be developed)
   - Shape (To be developed)

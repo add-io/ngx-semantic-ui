@@ -30,3 +30,4 @@ export { ModalComponent, ModalContextDirective, ModalApproveDirective, ModalDeny
 export { TransitionService, TransitionBaseDirective } from "./transition";
 export { StickyContextDirective, StickyDirective, StickyConfig, StickyModule } from "./sticky";
 export { RatingComponent, RatingValueAccessor } from "./rating";
+export { ProgressDirective, BarComponent, BarProgressLabelComponent } from "./progress";

@@ -10,4 +10,17 @@ export class CommonService {
             || boolType === "1"
             || boolType === 1;
     }
+
+    /**
+     * Method is meant to clamp a number in a range of numbers.
+     *
+     * @param item The number in which we want to clamp.
+     * @param min The minimum value the number can be.
+     * @param max The maximum value the number can be.
+     */
+    public static clamp(item: number, min: number, max: number) {
+        if (item < min) return min;
+        if (item > max) return max;
+        return item;
+    }
 }
