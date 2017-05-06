@@ -10,7 +10,7 @@
     </div>
     <div class="ui tab active" data-tab="modal-examples">
         <h4>Basic Modal</h4>
-        <p>This is a basic example of how a modal can be done</p>
+        <p>This is a basic example of how a modal can be created.</p>
         <a class="ui button blue" (click)="basicModal.open()">Open Basic Modal</a>
         <div class="ui basic modal" #basicModal>
             <div class="ui icon header">
@@ -33,7 +33,7 @@
         </div>
 
         <h4>Form Modal</h4>
-        <p>This ia a modal that also includes a form element that can be altered.</p>
+        <p>This is a modal that also includes a form element that can be altered.</p>
         <a class="ui button blue" (click)="formModal.open()">Open Form Modal</a>
         <p>First Name: {{firstName ? firstName : "Please add in data."}} | Last Name: {{lastName ? lastName : "Please add in data."}}</p>
         <div class="ui modal" #formModal>
@@ -66,7 +66,7 @@
         </div>
 
         <h4>Content Change Modal</h4>
-        <p>If a modal needs to change its size if anything in the modal would for a change to the size of the modal.</p>
+        <p>Modals can change its size based on content.</p>
         <div class="ui buttons">
             <a class="ui button blue" (click)="changeModal.open()">Observing Changes</a>
             <div class="or"></div>
@@ -244,7 +244,7 @@ Nam malesuada, justo sed ultricies consequat, urna lectus sagittis risus, a effi
     </div>
     <div class="ui tab" data-tab="modal-settings">
         <h2>Directives / Components</h2>
-        <p>A set of directives and components that work together to create modals</p>
+        <p>A set of directives and components that work together to create modals.</p>
         <table class="ui celled sortable definition table segment">
             <thead>
                 <tr>
@@ -262,16 +262,16 @@ Nam malesuada, justo sed ultricies consequat, urna lectus sagittis risus, a effi
                 <tr>
                     <td>[modalContext]</td>
                     <td>&lt;div modalContext&gt;&lt;/div&gt;</td>
-                    <td>The context in which the modal should be embedded into, the default is the body tag.</td>
+                    <td>The context in which the modal should be embedded into; the default is the body tag.</td>
                 </tr>
                 <tr>
                     <td>.positive,.approve,.ok</td>
-                    <td>&lt;a class="ui button positive green"&gt;&lt;/a&gt;</td>
+                    <td>&lt;a class="ui button positive"&gt;&lt;/a&gt;</td>
                     <td>Button that will trigger an approve event and close the modal.</td>
                 </tr>
                  <tr>
                     <td>.negative,.deny,.cancel</td>
-                    <td>&lt;a class="ui button negative red"&gt;&lt;/a&gt;</td>
+                    <td>&lt;a class="ui button negative"&gt;&lt;/a&gt;</td>
                     <td>Button that will trigger a deny event and close the modal.</td>
                 </tr>
                  <tr>

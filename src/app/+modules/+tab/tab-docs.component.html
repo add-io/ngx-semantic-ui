@@ -12,7 +12,7 @@
         <a class="item" data-tab="tab-settings">Settings</a>
     </div>
     <div class="ui tab active" data-tab="tab-examples">
-        <h2>Basic Tabs</h2>
+        <h4>Basic Tabs</h4>
         <p>Tabs are connected using paths specified in the <code>data-tab</code> attribute.</p>
         <div tabContext="basic">
             <div class="ui top attached tabular menu">
@@ -31,8 +31,8 @@
             </div>
         </div>
 
-        <h2>Multiple Tab Groups</h2>
-        <p>Multiple tab Groups are sometimes needed so you can specify different groups by wrapping them in a tab context</p>
+        <h4>Multiple Tab Groups</h4>
+        <p>Multiple Tab Groups are sometimes needed so you can specify different groups.</p>
 
         <div tabContext="context1">
             <div class="ui secondary menu">
@@ -83,8 +83,8 @@
             <div class="ui active tab segment" data-tab="sixth">6</div>
         </div>
 
-        <h2>Paths</h2>
-        <p>If you have nested tabs you can specify paths for them so that if a parent is selected it will open up all the children recursivly down the line</p>
+        <h4>Paths</h4>
+        <p>If you have nested tabs, you can specify paths for them so that if a parent is selected it will open up all the children recursively.</p>
         <div tabContext="path">
             <div class="ui pointing secondary menu">
                 <a class="active item" data-tab="first">First</a>
@@ -123,8 +123,8 @@
             </div>
         </div>
 
-        <h2>History Examples</h2>
-        <p>Adding for the ability for the history of the page to also be taken into account when when navigating through the tabs</p>
+        <h4>History</h4>
+        <p>The history of the page can also be taken into account when when navigating through the tabs.</p>
         <div tabContext="history" history="true">
             <div class="ui pointing secondary menu">
                 <a class="item" data-tab="first">First</a>
@@ -165,7 +165,7 @@
     </div>
     <div class="ui tab" data-tab="tab-settings">
         <h2>Directives</h2>
-        <p>A set of directives that work together to create tabs</p>
+        <p>A set of directives that work together to create tabs.</p>
         <table class="ui celled sortable definition table segment">
             <thead>
                 <tr>
@@ -178,17 +178,17 @@
                 <tr>
                     <td>.ui.tab</td>
                     <td>&lt;div class="ui tab" data-tab="tab-path"&gt;&lt;/div&gt;</td>
-                    <td>This is the content that should be displayed when the tab is active</td>
+                    <td>This is the content that should be displayed when the tab is active.</td>
                 </tr>
                 <tr>
                     <td>[data-tab]:not(.ui.tab)</td>
                     <td>&lt;a class="item" data-tab="tab-path"&gt;&lt;/a&gt;</td>
-                    <td>This is the trigger that will open a specific tab when clicked</td>
+                    <td>This is the trigger that will open a specific tab when clicked.</td>
                 </tr>
                 <tr>
                     <td>[tabContext]</td>
                     <td>&lt;div tabContext="context-name"&gt;&lt;/div&gt;</td>
-                    <td>This is the context this tab can trigger in, it is best to have both the tabs and the triggers</td>
+                    <td>This is the context this tab can trigger in; it is best to have both the tabs and the triggers.</td>
                 </tr>
             </tbody>
         </table>
@@ -209,19 +209,19 @@
                     <td>[tab] | [data-tab]</td>
                     <td>*required</td>
                     <td>any</td>
-                    <td>The attribute that determines the tab content as well as the tab triggers</td>
+                    <td>The attribute that determines the tab content as well as the tab triggers.</td>
                 </tr>
                 <tr>
                     <td>.active</td>
                     <td>false</td>
                     <td>.ui.tab | [data-tab]:not(.ui.tab)</td>
-                    <td>Determine if this is the default tab that should be opened if one is not selected</td>
+                    <td>Determine if this is the default tab that should be opened if one is not selected.</td>
                 </tr>
                 <tr>
                     <td>[history]</td>
                     <td>false</td>
                     <td>[tabContext]</td>
-                    <td>Whether the tab should be pushed to the url history of the application</td>
+                    <td>Whether the tab should be pushed to the url history of the application.</td>
                 </tr>
             </tbody>
         </table>
@@ -241,7 +241,7 @@
                     <td>(visible)</td>
                     <td>isVisible</td>
                     <td>.ui.tab</td>
-                    <td>Event that will occur once the tab becomes visible</td>
+                    <td>Event that will occur once the tab becomes visible.</td>
                 </tr>
             <tbody>
         </table>
