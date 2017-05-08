@@ -1,5 +1,5 @@
 {
-  "name": "angularattack2017-ngx-semantic-ui",
+  "name": "ngx-semantic-ui",
   "description": "Semantic UI implementation without jQuery",
   "keywords": [
     "angular",
@@ -15,7 +15,7 @@
   },
   "homepage": "http://semantic-ui.ngx-ui.com",
   "version": "0.1.5",
-  "license": "MIT",
+  "license": "MIT",W
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
