@@ -51,9 +51,14 @@ export const routes: Routes = [
         data: {pageTitle: 'Progress'}
     },
     {
-        path: 'sidebar',
-        loadChildren: 'app/+modules/+sidebar/sidebar-docs.module#SidebarDocsModule',
-        data: {pageTitle: 'Sidebar'}
+        path: 'progress',
+        loadChildren: 'app/+modules/+progress/progress-docs.module#ProgressDocsModule',
+        data: {pageTitle: 'Progress'}
+    },
+    {
+        path: 'shape',
+        loadChildren: 'app/+modules/+shape/shape-docs.module#ShapeDocsModule',
+        data: {pageTitle: 'Shape'}
     }
     // {
     //     path: 'popup',

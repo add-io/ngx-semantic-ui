@@ -73,4 +73,19 @@ export class TransitionService {
             }
         }
     }
+
+    public addStyles(ele: any, styles: { [key: string]: string }) {
+        for(let style in styles) {
+            this._renderer.setStyle(ele, style, styles[style]);
+        }
+    }
+
+    public removeStyles(ele: any, ...styles: string[]) {
+        for(let i = 0; i < styles.length; ++i) {
+            let list = styles[i].split(" ");
+            for(let j = 0; j < list.length; ++j) {
+                this._renderer.removeStyle(ele, list[j]);
+            }
+        }
+    }
 }

@@ -64,7 +64,7 @@ export class AppModule { }
   - Progress
   - Rating
   - Search (To be developed)
-  - Shape (To be developed)
+  - Shape
   - Sidebar (In development)
   - Sticky
   - Tab

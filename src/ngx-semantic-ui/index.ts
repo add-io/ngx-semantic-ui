@@ -31,11 +31,15 @@ export {
     // #endregion
 
     // #region Rating Includes
-    RatingComponent, RatingValueAccessor,
+    RatingComponent, RatingValueAccessor, RatingConfig,
     // #endregion
 
     // #region Progress Includes
-    ProgressDirective, BarComponent, BarProgressLabelComponent,
+    ProgressDirective, BarComponent, BarProgressLabelComponent, ProgressConfig,
+    // #endregion
+
+    // #region Shape Includes
+    SideDirective, SidesDirective, ShapeComponent, ShapeConfig,
     // #endregion
 
     // #region Transition Includes
@@ -44,7 +48,7 @@ export {
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule } from "./modules";
+import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule, RatingModule, ProgressModule, ShapeModule } from "./modules";
 
 export function Modules() {
     return [
@@ -53,7 +57,10 @@ export function Modules() {
         ModalModule,
         TabModule,
         DropdownModule,
-        StickyModule
+        StickyModule,
+        RatingModule,
+        ProgressModule,
+        ShapeModule
     ];
 };
 
@@ -64,7 +71,10 @@ export function Modules() {
         ModalModule.forRoot(),
         TabModule.forRoot(),
         DropdownModule.forRoot(),
-        StickyModule.forRoot()
+        StickyModule.forRoot(),
+        RatingModule.forRoot(),
+        ProgressModule.forRoot(),
+        ShapeModule.forRoot()
     ],
     exports: Modules()
 })

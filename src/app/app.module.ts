@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 
 import {routing} from './app.routing';
 import {BrowserModule} from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import {BrowserModule} from "@angular/platform-browser";
         AppComponent,
     ],
     imports: [
-
+        BrowserAnimationsModule,
         BrowserModule,
         routing,
         NgxSemanticUiModule,
