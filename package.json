@@ -15,7 +15,7 @@
   },
   "homepage": "http://semantic-ui.ngx-ui.com",
   "version": "0.1.5",
-  "license": "MIT",W
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
