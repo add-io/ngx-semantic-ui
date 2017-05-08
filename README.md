@@ -9,6 +9,9 @@ This project is still in heavy development.  So there will be features that have
 ## Installation
 ```bash
 npm install --save ngx-semantic-ui
+
+cd {SEMANTIC FOLDER}
+gulp build
 ```
 
 ## Use
@@ -71,10 +74,10 @@ export class AppModule { }
   - Transition
 
 ### Components
-> Once modules are finished componets will be developed to build out common use cases for each of the modules for quick development.
+> Once modules are finished, components will be developed to build out common use cases for each of the modules for quick development.
 
 ### Services
-> Once modules are finished custom services will be developed to deal with opening dynamic modals in code and displaying messages from code much like toastr messages.
+> Once modules are finished, custom services will be developed to deal with opening dynamic modals in code and displaying messages from code much like toastr messages.
 
 ## Licence
 MIT License

@@ -280,8 +280,8 @@
 
         <div class="ui divider"></div>
 
-        <h4>Multi Select Dropdown</h4>
-        <p>Select multiple element is also supported and will be converted into a dropdown as well.</p>
+        <h4>Multi-Select Dropdown</h4>
+        <p>A dropdown can allow multiple selections</p>
         <div class="ui block"><pre [innerHTML]="stringify(multipleSelectValue)"></pre></div>
         <select name="skills" multiple="" class="ui fluid dropdown" [(ngModel)]="multipleSelectValue" maxSelections="5">
             <option value="">Skills</option>
@@ -307,8 +307,8 @@
 
         <div class="ui divider"></div>
 
-        <h4>Search Multi Select Dropdown</h4>
-        <p>Multiple select dropdown can also have a search component added to it as well.</p>
+        <h4>Search Multi-Select Dropdown</h4>
+        <p>Multi-Select dropdowns can also have a search component.</p>
         <div class="ui block"><pre [innerHTML]="stringify(multipleSearchSelectValue)"></pre></div>
         <select class="ui fluid search dropdown" multiple="" [(ngModel)]="multipleSearchSelectValue" labelTransition="scale" labelDuration="1000">
             <option value="">State</option>
@@ -368,7 +368,7 @@
         <div class="ui divider"></div>
 
         <h4>Special Multi-Select Search Value with Default</h4>
-        <p>Select will deal with default values as well as all the other options</p>
+        <p>Default values can also be used.</p>
         <pre class="code" [innerHTML]="stringify(specialSelectValue)"></pre>
         <div class="ui fluid multiple search selection dropdown" [(ngModel)]='specialSelectValue'>
             <input type="hidden" name="country">
@@ -623,7 +623,7 @@
         <div class="ui divider"></div>
 
         <h4>Dropdown with embedded search</h4>
-        <p>The item list can also have an embedded search and the input will not create a search in itself.</p>
+        <p>The select values can also be embedded.</p>
         <p>Selected Value: {{embeddedSearchValue == null ? "Nothing Selected" : embeddedSearchValue}}</p>
         <div class="ui floating dropdown labeled icon button" [(ngModel)]="embeddedSearchValue">
             <i class="filter icon"></i>
@@ -709,27 +709,27 @@
                     Move to trash
                 </div>
                 <div class="divider"></div>
-                <div class="item">Download As...</div>
+                <div class="item">Download as...</div>
                 <div class="item">
                     <i class="dropdown icon"></i>
-                    Publish To Web
+                    Publish to web
                     <div class="menu">
                         <div class="item">Google Docs</div>
                         <div class="item">Google Drive</div>
                         <div class="item">Dropbox</div>
                         <div class="item">Adobe Creative Cloud</div>
                         <div class="item">Private FTP</div>
-                        <div class="item">Another Service...</div>
+                        <div class="item">Another service...</div>
                     </div>
                 </div>
-                <div class="item">E-mail Collaborators</div>
+                <div class="item">E-mail collaborators</div>
             </div>
         </div>
 
         <div class="ui divider"></div>
 
         <h4>Pointing Menu</h4>
-        <p>Dropdowns can be formated to deal with pointing menus.</p>
+        <p>Dropdowns can be formated to deal with pointing menus and vertical or horizontal.</p>
         <div class="ui menu">
             <a class="item">
                 Home
