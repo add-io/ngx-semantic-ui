@@ -43,7 +43,11 @@ export {
     // #endregion
 
     // #region Search Includes
-    SearchConfig, SearchModule,
+    SearchConfig, SearchModule, SearchComponent, InputPromptDirective,
+    // #endregion
+
+    // #region Dimmer Includes
+    DimmerComponent, DimmerDirective, DimmerConfig, DimmerModule,
     // #endregion
 
     // #region Transition Includes
@@ -52,7 +56,7 @@ export {
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule, RatingModule, ProgressModule, ShapeModule, SearchModule } from "./modules";
+import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule, RatingModule, ProgressModule, ShapeModule, SearchModule, DimmerModule } from "./modules";
 
 export function Modules() {
     return [
@@ -65,7 +69,8 @@ export function Modules() {
         RatingModule,
         ProgressModule,
         ShapeModule,
-        SearchModule
+        SearchModule,
+        DimmerModule
     ];
 };
 
@@ -80,7 +85,8 @@ export function Modules() {
         RatingModule.forRoot(),
         ProgressModule.forRoot(),
         ShapeModule.forRoot(),
-        SearchModule.forRoot()
+        SearchModule.forRoot(),
+        DimmerModule.forRoot()
     ],
     exports: Modules()
 })

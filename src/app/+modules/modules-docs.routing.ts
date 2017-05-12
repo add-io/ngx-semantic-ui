@@ -59,6 +59,11 @@ export const routes: Routes = [
         path: 'shape',
         loadChildren: 'app/+modules/+shape/shape-docs.module#ShapeDocsModule',
         data: {pageTitle: 'Shape'}
+    },
+    {
+        path: 'dimmer',
+        loadChildren: 'app/+modules/+dimmer/dimmer-docs.module#DimmerDocsModule',
+        data: {pageTitle: 'Dimmer'}
     }
     // {
     //     path: 'popup',

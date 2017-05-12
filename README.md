@@ -58,7 +58,7 @@ export class AppModule { }
 ### Modules
   - Accordion
   - Checkbox
-  - Dimmer (To be developed)
+  - Dimmer
   - Dropdown
   - Embed (To be developed)
   - Modal

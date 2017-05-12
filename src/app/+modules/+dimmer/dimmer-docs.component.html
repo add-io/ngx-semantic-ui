@@ -1,0 +1,134 @@
+<h1 class="ui header">Dimmer</h1>
+<div class="ui ignored info message">
+    A dimmer hides distractions to focus attention on particular content.
+</div>
+
+<div class="ui segment">
+    <div class="ui pointing secondary menu">
+        <a class="item active" data-tab="examples">Examples</a>
+        <a class="item" data-tab="settings">Settings</a>
+    </div>
+    <div class="ui tab active" data-tab="examples">
+        <h4>Basic Dimmer</h4>
+        <p>Dimmers can be bound to a segment without a dimmer, and it will be generated automatically.</p>
+        <div class="ui segment" uiDimmer #simpleDimmer>
+            <!-- Dimmer Generated Automatically No Need to Include !-->
+            <h3 class="ui header">
+                Overlayable Section
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec sem at leo varius facilisis non nec ex. Curabitur eget massa diam. Vivamus eu scelerisque orci. Nam aliquet justo diam, eget interdum tellus vehicula sed. Suspendisse non nunc egestas, semper eros nec, congue lectus. Nullam in vehicula dolor. Nulla dictum dui ut diam aliquet, id consectetur lectus consequat.</p>
+        </div>
+        <div class="ui ignored ignored icon buttons">
+            <div class="ui show button" (click)="simpleDimmer.show()"><i class="plus icon"></i></div>
+            <div class="ui hide button" (click)="simpleDimmer.hide()"><i class="minus icon"></i></div>
+        </div>
+
+        <h4>Content Dimmer</h4>
+        <p>Dimmers can also have a dimmer defined to it by adding it as a child of the dimmer being created.</p>
+        <div class="ui segment" uiDimmer #contentSimpleDimmer>
+            <h3 class="ui header">
+                Overlayable Section
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec sem at leo varius facilisis non nec ex. Curabitur eget massa diam. Vivamus eu scelerisque orci. Nam aliquet justo diam, eget interdum tellus vehicula sed. Suspendisse non nunc egestas, semper eros nec, congue lectus. Nullam in vehicula dolor. Nulla dictum dui ut diam aliquet, id consectetur lectus consequat.</p>
+            <div class="ui dimmer">
+                <div class="content">
+                    <div class="center">
+                        <h2 class="ui inverted icon header">
+                            <i class="heart icon"></i>
+                            Dimmed Message!
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui ignored ignored icon buttons">
+            <div class="ui show button" (click)="contentSimpleDimmer.show()"><i class="plus icon"></i></div>
+            <div class="ui hide button" (click)="contentSimpleDimmer.hide()"><i class="minus icon"></i></div>
+        </div>
+
+        <h4>Dimmer Bound To Boolean</h4>
+        <p>Dimmers can also be bound to a boolean that can be altered by the component, for instance to not allow altering of a form after submit.</p>
+        <div class="ui segment" [uiDimmer]="saving" closable="none">
+            <h3 class="ui header">Overlayable Form</h3>
+            <form class="ui form">
+                <div class="field">
+                    <label>First Name</label>
+                    <input type="text" name="first-name" placeholder="First Name">
+                </div>
+                <div class="field">
+                    <label>Last Name</label>
+                    <input type="text" name="last-name" placeholder="Last Name">
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" tabindex="0" class="hidden">
+                        <label>I agree to the Terms and Conditions</label>
+                    </div>
+                </div>
+                <button class="ui button" type="button" (click)="save()">Submit</button>
+            </form>
+            <div class="ui inverted dimmer">
+                <div class="ui text loader">Saving...</div>
+            </div>
+        </div>
+    </div>
+    <div class="ui tab" data-tab="settings">
+        <h2>Components / Directives</h2>
+        <p>A set of components and directives that work together to create dimmers.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Usage</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[uiDimmer]</td>
+                    <td>&lt;div class="ui segment" uiDimmer&gt;&lt;/div&gt;</td>
+                    <td>The component that will control the dimmer for the segment.</td>
+                </tr>
+                <tr>
+                    <td>.ui.dimmer</td>
+                    <td>&lt;div class="ui dimmer"&gt;&lt;/div&gt;</td>
+                    <td>The dimmer that will be overlaying the content.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Settings</h2>
+        <p>Settings that can be added to the elements to change the functionality of the dimmer.</p>
+        <table class="ui celled sortable definition table segment">
+            <thead>
+                <tr>
+                    <th class="four wide"></th>
+                    <th class="four wide">Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[uiDimmer]</td>
+                    <td>empty</td>
+                    <td>The initilization to build a dimmer, however it can be bound with a boolean to control if the dimmer is shown or not.</td>
+                </tr>
+                <tr>
+                    <td>[transition]</td>
+                    <td>fade</td>
+                    <td>The animation that should be used when opening or closing the dimmer.</td>
+                </tr>
+                <tr>
+                    <td>[duration]</td>
+                    <td>500</td>
+                    <td>The duration it takes for the dimmer to finish its animation.</td>
+                </tr>
+                <tr>
+                    <td>[closable]</td>
+                    <td>auto</td>
+                    <td>If the dimmer itself can be closed when the dimmer is clicked.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
