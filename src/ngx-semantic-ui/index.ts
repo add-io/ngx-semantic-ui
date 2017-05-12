@@ -90,9 +90,4 @@ export function Modules() {
     ],
     exports: Modules()
 })
-export class NgxRootModule { }
-
-@NgModule({ exports: Modules() })
-export class NgxSemanticUiModule {
-    static forRoot(): ModuleWithProviders { return { ngModule: NgxRootModule }; }
-}
+export class NgxSemanticUiModule { }

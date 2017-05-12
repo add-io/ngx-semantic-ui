@@ -46,7 +46,7 @@ import { AppComponent } from "./app.component";
         BrowserModule,
         FormsModule,
         HttpModule,
-        NgxSemanticUiModule.forRoot()
+        NgxSemanticUiModule
     ],
     declarations: [
         AppComponent,
