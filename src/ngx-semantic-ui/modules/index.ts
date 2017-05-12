@@ -32,3 +32,4 @@ export { StickyContextDirective, StickyDirective, StickyConfig, StickyModule } f
 export { RatingComponent, RatingValueAccessor, RatingConfig, RatingModule } from "./rating";
 export { ProgressDirective, BarComponent, BarProgressLabelComponent, ProgressConfig, ProgressModule } from "./progress";
 export { ShapeComponent, SideDirective, SidesDirective, ShapeConfig, ShapeModule } from "./shape";
+export { SearchConfig, SearchModule } from "./search";

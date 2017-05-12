@@ -51,9 +51,9 @@ export const routes: Routes = [
         data: {pageTitle: 'Progress'}
     },
     {
-        path: 'progress',
-        loadChildren: 'app/+modules/+progress/progress-docs.module#ProgressDocsModule',
-        data: {pageTitle: 'Progress'}
+        path: 'search',
+        loadChildren: 'app/+modules/+search/search-docs.module#SearchDocsModule',
+        data: {pageTitle: 'Search'}
     },
     {
         path: 'shape',

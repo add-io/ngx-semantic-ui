@@ -42,13 +42,17 @@ export {
     SideDirective, SidesDirective, ShapeComponent, ShapeConfig,
     // #endregion
 
+    // #region Search Includes
+    SearchConfig, SearchModule,
+    // #endregion
+
     // #region Transition Includes
     TransitionService
     // #endregion
 } from "./modules";
 
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule, RatingModule, ProgressModule, ShapeModule } from "./modules";
+import { AccordionModule, CheckboxModule, ModalModule, TabModule, DropdownModule, StickyModule, RatingModule, ProgressModule, ShapeModule, SearchModule } from "./modules";
 
 export function Modules() {
     return [
@@ -60,7 +64,8 @@ export function Modules() {
         StickyModule,
         RatingModule,
         ProgressModule,
-        ShapeModule
+        ShapeModule,
+        SearchModule
     ];
 };
 
@@ -74,7 +79,8 @@ export function Modules() {
         StickyModule.forRoot(),
         RatingModule.forRoot(),
         ProgressModule.forRoot(),
-        ShapeModule.forRoot()
+        ShapeModule.forRoot(),
+        SearchModule.forRoot()
     ],
     exports: Modules()
 })

@@ -14,7 +14,7 @@
     "url": "https://github.com/add-io/ngx-semantic-ui/issues"
   },
   "homepage": "http://semantic-ui.ngx-ui.com",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
