@@ -50,6 +50,10 @@ export {
     DimmerComponent, DimmerDirective, DimmerConfig, DimmerModule,
     // #endregion
 
+    // #region Embed Includes
+    EmbedConfig, EmbedModule,
+    // #endregion
+
     // #region Transition Includes
     TransitionService
     // #endregion

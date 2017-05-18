@@ -34,3 +34,4 @@ export { ProgressDirective, BarComponent, BarProgressLabelComponent, ProgressCon
 export { ShapeComponent, SideDirective, SidesDirective, ShapeConfig, ShapeModule } from "./shape";
 export { SearchConfig, SearchModule, SearchComponent, InputPromptDirective } from "./search";
 export { DimmerComponent, DimmerDirective, DimmerConfig, DimmerModule } from "./dimmer";
+export { EmbedConfig, EmbedModule } from "./embed";

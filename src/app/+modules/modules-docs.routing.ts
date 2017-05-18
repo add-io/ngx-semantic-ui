@@ -64,6 +64,11 @@ export const routes: Routes = [
         path: 'dimmer',
         loadChildren: 'app/+modules/+dimmer/dimmer-docs.module#DimmerDocsModule',
         data: {pageTitle: 'Dimmer'}
+    },
+    {
+        path: 'embed',
+        loadChildren: 'app/+modules/+embed/embed-docs.module#EmbedDocsModule',
+        data: {pageTitle: 'Embed'}
     }
     // {
     //     path: 'popup',
